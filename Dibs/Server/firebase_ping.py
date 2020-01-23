@@ -1,6 +1,12 @@
+#
+# Firebase support
+#
+
 # conda install -c anaconda pip
-# pip install firebase-admin
+# conda activate py2
+	# any VENV with python 2
 # pip install python-firebase
+# python firebase_ping.py
 
 from firebase import firebase
 
