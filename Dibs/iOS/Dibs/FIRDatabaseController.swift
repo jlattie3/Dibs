@@ -22,6 +22,9 @@ public class FireDatabaseController {
           // Get chair data
           let value = snapshot.value as? NSDictionary
           print(value)
+            print(".")
+            print(".")
+            print(".")
     
           }) { (error) in
             print(error.localizedDescription)

@@ -13,6 +13,7 @@
 		9A3D5A1C23DA150E007E88E9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A3D5A1B23DA150E007E88E9 /* GoogleService-Info.plist */; };
 		9A3D5A1D23DA150E007E88E9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A3D5A1B23DA150E007E88E9 /* GoogleService-Info.plist */; };
 		9A3D5A1E23DA150E007E88E9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A3D5A1B23DA150E007E88E9 /* GoogleService-Info.plist */; };
+		9A3D5A2023E0F7E9007E88E9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3D5A1F23E0F7E9007E88E9 /* LoginViewController.swift */; };
 		9A61EAF823C4100A00D66F2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A61EAF723C4100A00D66F2E /* AppDelegate.swift */; };
 		9A61EAFA23C4100A00D66F2E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A61EAF923C4100A00D66F2E /* SceneDelegate.swift */; };
 		9A61EAFC23C4100A00D66F2E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A61EAFB23C4100A00D66F2E /* ViewController.swift */; };
@@ -52,6 +53,7 @@
 		90CBA86B89C61A7317C3F0A7 /* Pods_Dibs_DibsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dibs_DibsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A3D5A1223DA0E2A007E88E9 /* FIRDatabaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIRDatabaseController.swift; sourceTree = "<group>"; };
 		9A3D5A1B23DA150E007E88E9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9A3D5A1F23E0F7E9007E88E9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9A61EAF423C4100A00D66F2E /* Dibs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dibs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A61EAF723C4100A00D66F2E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A61EAF923C4100A00D66F2E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				9A61EAF723C4100A00D66F2E /* AppDelegate.swift */,
 				9A61EAF923C4100A00D66F2E /* SceneDelegate.swift */,
 				9A61EAFB23C4100A00D66F2E /* ViewController.swift */,
+				9A3D5A1F23E0F7E9007E88E9 /* LoginViewController.swift */,
 				9A3D5A1223DA0E2A007E88E9 /* FIRDatabaseController.swift */,
 				9A61EAFD23C4100A00D66F2E /* Main.storyboard */,
 				9A61EB0323C4100F00D66F2E /* Assets.xcassets */,
@@ -421,6 +424,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A3D5A2023E0F7E9007E88E9 /* LoginViewController.swift in Sources */,
 				9A61EAFC23C4100A00D66F2E /* ViewController.swift in Sources */,
 				9A61EAF823C4100A00D66F2E /* AppDelegate.swift in Sources */,
 				9A61EAFA23C4100A00D66F2E /* SceneDelegate.swift in Sources */,
