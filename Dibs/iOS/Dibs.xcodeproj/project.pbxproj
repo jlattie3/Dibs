@@ -69,6 +69,7 @@
 		9A61EB1823C4100F00D66F2E /* DibsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DibsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A61EB1C23C4100F00D66F2E /* DibsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DibsUITests.swift; sourceTree = "<group>"; };
 		9A61EB1E23C4100F00D66F2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9ACEAED723F0815B00666CED /* Dibs.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Dibs.entitlements; sourceTree = "<group>"; };
 		C70A941AEB7C837C596D412E /* Pods-Dibs-DibsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dibs-DibsUITests.release.xcconfig"; path = "Target Support Files/Pods-Dibs-DibsUITests/Pods-Dibs-DibsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D393296BBD644A070306D4D8 /* Pods_Dibs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dibs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -136,6 +137,7 @@
 		9A61EAF623C4100A00D66F2E /* Dibs */ = {
 			isa = PBXGroup;
 			children = (
+				9ACEAED723F0815B00666CED /* Dibs.entitlements */,
 				9A3D5A1B23DA150E007E88E9 /* GoogleService-Info.plist */,
 				9A61EAF723C4100A00D66F2E /* AppDelegate.swift */,
 				9A61EAF923C4100A00D66F2E /* SceneDelegate.swift */,
@@ -603,6 +605,7 @@
 			baseConfigurationReference = 73843BD6BA8E024330B1DC2F /* Pods-Dibs.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Dibs/Dibs.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 34NAQU5GSM;
 				INFOPLIST_FILE = Dibs/Info.plist;
@@ -623,6 +626,7 @@
 			baseConfigurationReference = 031D220A298CCB304A7E7E13 /* Pods-Dibs.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Dibs/Dibs.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 34NAQU5GSM;
 				INFOPLIST_FILE = Dibs/Info.plist;
