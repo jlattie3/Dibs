@@ -20,7 +20,7 @@ class ViewController: UIViewController {
         Auth.auth().addStateDidChangeListener { auth, user in
             if let user = user {
                 self.testButton.layer.cornerRadius = CGFloat(22.0)
-//                self.performSegue(withIdentifier: "alreadyLoggedIn", sender: nil)
+                self.performSegue(withIdentifier: "alreadyLoggedIn", sender: nil)
                 
             } else {
                 

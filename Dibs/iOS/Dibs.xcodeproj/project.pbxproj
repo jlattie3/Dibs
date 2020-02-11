@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4ED062F92CB779BCB82025F6 /* Pods_Dibs_DibsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90CBA86B89C61A7317C3F0A7 /* Pods_Dibs_DibsUITests.framework */; };
 		81870EF86E3CAFD11FBCE420 /* Pods_DibsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51DAC381042F448DF8FBDFAA /* Pods_DibsTests.framework */; };
+		9A21A9C723F22F34008A9CFE /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A21A9C623F22F34008A9CFE /* ScannerViewController.swift */; };
 		9A3D5A1323DA0E2A007E88E9 /* FIRDatabaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3D5A1223DA0E2A007E88E9 /* FIRDatabaseController.swift */; };
 		9A3D5A1C23DA150E007E88E9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A3D5A1B23DA150E007E88E9 /* GoogleService-Info.plist */; };
 		9A3D5A1D23DA150E007E88E9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A3D5A1B23DA150E007E88E9 /* GoogleService-Info.plist */; };
@@ -23,6 +24,7 @@
 		9A61EB0723C4100F00D66F2E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A61EB0523C4100F00D66F2E /* LaunchScreen.storyboard */; };
 		9A61EB1223C4100F00D66F2E /* DibsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A61EB1123C4100F00D66F2E /* DibsTests.swift */; };
 		9A61EB1D23C4100F00D66F2E /* DibsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A61EB1C23C4100F00D66F2E /* DibsUITests.swift */; };
+		9ACEAED923F204CF00666CED /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ACEAED823F204CE00666CED /* IntroViewController.swift */; };
 		D61F8E13D18026683A27A4A0 /* Pods_Dibs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D393296BBD644A070306D4D8 /* Pods_Dibs.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +53,7 @@
 		51DAC381042F448DF8FBDFAA /* Pods_DibsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DibsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		73843BD6BA8E024330B1DC2F /* Pods-Dibs.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dibs.debug.xcconfig"; path = "Target Support Files/Pods-Dibs/Pods-Dibs.debug.xcconfig"; sourceTree = "<group>"; };
 		90CBA86B89C61A7317C3F0A7 /* Pods_Dibs_DibsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dibs_DibsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A21A9C623F22F34008A9CFE /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		9A3D5A1223DA0E2A007E88E9 /* FIRDatabaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIRDatabaseController.swift; sourceTree = "<group>"; };
 		9A3D5A1B23DA150E007E88E9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9A3D5A1F23E0F7E9007E88E9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -70,6 +73,7 @@
 		9A61EB1C23C4100F00D66F2E /* DibsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DibsUITests.swift; sourceTree = "<group>"; };
 		9A61EB1E23C4100F00D66F2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9ACEAED723F0815B00666CED /* Dibs.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Dibs.entitlements; sourceTree = "<group>"; };
+		9ACEAED823F204CE00666CED /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 		C70A941AEB7C837C596D412E /* Pods-Dibs-DibsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dibs-DibsUITests.release.xcconfig"; path = "Target Support Files/Pods-Dibs-DibsUITests/Pods-Dibs-DibsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D393296BBD644A070306D4D8 /* Pods_Dibs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dibs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -142,6 +146,8 @@
 				9A61EAF723C4100A00D66F2E /* AppDelegate.swift */,
 				9A61EAF923C4100A00D66F2E /* SceneDelegate.swift */,
 				9A61EAFB23C4100A00D66F2E /* ViewController.swift */,
+				9ACEAED823F204CE00666CED /* IntroViewController.swift */,
+				9A21A9C623F22F34008A9CFE /* ScannerViewController.swift */,
 				9A3D5A1F23E0F7E9007E88E9 /* LoginViewController.swift */,
 				9A3D5A1223DA0E2A007E88E9 /* FIRDatabaseController.swift */,
 				9A61EAFD23C4100A00D66F2E /* Main.storyboard */,
@@ -428,10 +434,12 @@
 			files = (
 				9A3D5A2023E0F7E9007E88E9 /* LoginViewController.swift in Sources */,
 				9A61EAFC23C4100A00D66F2E /* ViewController.swift in Sources */,
+				9ACEAED923F204CF00666CED /* IntroViewController.swift in Sources */,
 				9A61EAF823C4100A00D66F2E /* AppDelegate.swift in Sources */,
 				9A61EAFA23C4100A00D66F2E /* SceneDelegate.swift in Sources */,
 				9A61EB0223C4100A00D66F2E /* Dibs.xcdatamodeld in Sources */,
 				9A3D5A1323DA0E2A007E88E9 /* FIRDatabaseController.swift in Sources */,
+				9A21A9C723F22F34008A9CFE /* ScannerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
