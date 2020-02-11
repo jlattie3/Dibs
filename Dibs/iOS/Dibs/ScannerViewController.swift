@@ -75,9 +75,9 @@ extension ScannerViewController: NFCNDEFReaderSessionDelegate {
                 
                 let record = message.records[recordIndex]
                 print("\t\tRecord \(recordIndex)")
-                print("\t\t\tidentifier: \(String(data: record.identifier, encoding: .utf8))")
-                print("\t\t\ttype: \(String(data: record.type, encoding: .utf8))")
-                print("\t\t\tpayload: \(String(data: record.payload, encoding: .utf8))")
+                print("\t\t\tidentifier: \(String(describing: String(data: record.identifier, encoding: .utf8)))")
+                print("\t\t\ttype: \(String(describing: String(data: record.type, encoding: .utf8)))")
+                print("\t\t\tpayload: \(String(describing: String(data: record.payload, encoding: .utf8)))")
             }
         }
     }
