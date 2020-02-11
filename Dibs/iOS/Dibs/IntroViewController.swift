@@ -35,7 +35,9 @@ class IntroViewController: UIViewController {
     
     
     @IBAction func loginButtonTapped(_ sender: Any) {
+        
         self.performSegue(withIdentifier: "loginButtonTapped", sender: nil)
+        
     }
     
     
