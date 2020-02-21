@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import FirebaseAuth
 
-class IntroViewController: UIViewController {
+class IntroViewController: UIViewController, UITextFieldDelegate {
 
     
     @IBOutlet weak var dibsLabel: UILabel!
@@ -24,6 +25,7 @@ class IntroViewController: UIViewController {
     @IBOutlet weak var imageView3: UIImageView!
     @IBOutlet weak var label3: UILabel!
     
+    @IBOutlet weak var signOutTestButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,30 +37,44 @@ class IntroViewController: UIViewController {
     
     
     @IBAction func loginButtonTapped(_ sender: Any) {
-        
-        self.performSegue(withIdentifier: "loginButtonTapped", sender: nil)
+        Auth.auth().addStateDidChangeListener { auth, user in
+            if let user = user {
+                print(user)
+                self.performSegue(withIdentifier: "alreadyLoggedIn", sender: nil)
+                
+            } else {
+                self.performSegue(withIdentifier: "notLoggedIn", sender: nil)
+            }
+        }
+        print("Login Tapped")
         
     }
+    
+    
+    @IBAction func signOutTestButtonTapped(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+        } catch let signOutError as NSError {
+          print ("Error signing out: %@", signOutError)
+        }
+    }
+    
     
     
     
     func setupUI() {
         let cornerRadius = CGFloat(15.0)
-        createAccountButton.layer.cornerRadius = cornerRadius
+//        createAccountButton.layer.cornerRadius = cornerRadius
         loginButton.layer.cornerRadius = cornerRadius
         
 //        imageView1.image = UIImage(systemName: "􀓏")
 //        imageView2.image = UIImage(systemName: "􀖀")
 //        imageView3.image = UIImage(systemName: "􀋦")
-        label1.text = "Find Your Desired Seat \nTest\nTest"
-        label2.text = "Check In With NFC"
-        label3.text = "Save Time And Energy"
+//        label1.text = "Find Your Desired Seat \nTest\nTest"
+//        label2.text = "Check In With NFC"
+//        label3.text = "Save Time And Energy"
     }
     
-
-
-    
-
     /*
     // MARK: - Navigation
 
