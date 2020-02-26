@@ -18,7 +18,7 @@ public class FireDatabaseController {
     }
     
     func read() {
-        self.ref.child("chair_id").observeSingleEvent(of: .value, with: { (snapshot) in
+        self.ref.child("chair").observeSingleEvent(of: .value, with: { (snapshot) in
         // Get chair data
         let value = snapshot.value as? NSDictionary
         print(value)
