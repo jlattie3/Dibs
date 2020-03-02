@@ -53,8 +53,8 @@ class IntroViewController: UIViewController, UITextFieldDelegate {
                       UIColor(red: 243/255, green: 129/255, blue: 129/255, alpha: 1.0)]
         pastelView.setColors(colors)
 
-//        pastelView.startAnimation()
-//        view.insertSubview(pastelView, at: 0)
+        pastelView.startAnimation()
+        view.insertSubview(pastelView, at: 0)
 
         // Do any additional setup after loading the view.
     }
