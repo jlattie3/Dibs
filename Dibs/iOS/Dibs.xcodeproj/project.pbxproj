@@ -27,6 +27,8 @@
 		9A9EDF5C2400624900C49471 /* LoginSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9EDF5B2400624900C49471 /* LoginSignupViewController.swift */; };
 		9A9EDF5E24086EC900C49471 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9EDF5D24086EC900C49471 /* HomeViewController.swift */; };
 		9ACEAED923F204CF00666CED /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ACEAED823F204CE00666CED /* IntroViewController.swift */; };
+		9ADC9C26240EC4640063FAF6 /* SpotCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ADC9C25240EC4640063FAF6 /* SpotCell.xib */; };
+		9ADC9C28240EC5010063FAF6 /* SpotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADC9C27240EC5010063FAF6 /* SpotCell.swift */; };
 		D61F8E13D18026683A27A4A0 /* Pods_Dibs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D393296BBD644A070306D4D8 /* Pods_Dibs.framework */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +80,8 @@
 		9A9EDF5D24086EC900C49471 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		9ACEAED723F0815B00666CED /* Dibs.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Dibs.entitlements; sourceTree = "<group>"; };
 		9ACEAED823F204CE00666CED /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
+		9ADC9C25240EC4640063FAF6 /* SpotCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpotCell.xib; sourceTree = "<group>"; };
+		9ADC9C27240EC5010063FAF6 /* SpotCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotCell.swift; sourceTree = "<group>"; };
 		C70A941AEB7C837C596D412E /* Pods-Dibs-DibsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dibs-DibsUITests.release.xcconfig"; path = "Target Support Files/Pods-Dibs-DibsUITests/Pods-Dibs-DibsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D393296BBD644A070306D4D8 /* Pods_Dibs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dibs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -155,7 +159,9 @@
 				9A3D5A1F23E0F7E9007E88E9 /* LoginViewController.swift */,
 				9A3D5A1223DA0E2A007E88E9 /* FIRDatabaseController.swift */,
 				9A61EAFD23C4100A00D66F2E /* Main.storyboard */,
+				9ADC9C25240EC4640063FAF6 /* SpotCell.xib */,
 				9A9EDF5D24086EC900C49471 /* HomeViewController.swift */,
+				9ADC9C27240EC5010063FAF6 /* SpotCell.swift */,
 				9A9EDF5B2400624900C49471 /* LoginSignupViewController.swift */,
 				9A61EB0323C4100F00D66F2E /* Assets.xcassets */,
 				9A61EB0523C4100F00D66F2E /* LaunchScreen.storyboard */,
@@ -305,6 +311,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9ADC9C26240EC4640063FAF6 /* SpotCell.xib in Resources */,
 				9A61EB0723C4100F00D66F2E /* LaunchScreen.storyboard in Resources */,
 				9A3D5A1C23DA150E007E88E9 /* GoogleService-Info.plist in Resources */,
 				9A61EB0423C4100F00D66F2E /* Assets.xcassets in Resources */,
@@ -442,6 +449,7 @@
 				9A61EAFC23C4100A00D66F2E /* ViewController.swift in Sources */,
 				9ACEAED923F204CF00666CED /* IntroViewController.swift in Sources */,
 				9A61EAF823C4100A00D66F2E /* AppDelegate.swift in Sources */,
+				9ADC9C28240EC5010063FAF6 /* SpotCell.swift in Sources */,
 				9A9EDF5C2400624900C49471 /* LoginSignupViewController.swift in Sources */,
 				9A9EDF5E24086EC900C49471 /* HomeViewController.swift in Sources */,
 				9A61EAFA23C4100A00D66F2E /* SceneDelegate.swift in Sources */,

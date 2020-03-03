@@ -13,48 +13,87 @@ class HomeViewController: UIViewController {
     
     fileprivate let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.minimumLineSpacing = 20.0
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.translatesAutoresizingMaskIntoConstraints = false
         cv.register(SpotCell.self, forCellWithReuseIdentifier: "cell")
+        cv.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
         return cv
     }()
     
-    fileprivate let colors = [UIColor.green, UIColor.yellow, UIColor.red]
-    fileprivate var spotTags = ["Green", "Yellow", "Red"]
+    
+    fileprivate let titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Your Dibs"
+        label.font = .boldSystemFont(ofSize: 30)
+        return label
+    }()
+    
+//    fileprivate let bannerView: UIView = {
+//        let bannerView = UIView(frame: .zero)
+//        return bannerView
+//    }()
+    @IBOutlet weak var bannerView: UIView!
+    
+    fileprivate let colors = [UIColor.green, UIColor.yellow, UIColor.red, UIColor.green, UIColor.red, UIColor.green, UIColor.red, UIColor.green]
+    
+    fileprivate var spotTags = ["Green", "Yellow", "Red", "Green", "Red", "Green", "Red", "Green"]
     
     fileprivate var spotCount: Int = 0
 
-    @IBOutlet weak var contentView: UIView!
+//    @IBOutlet weak var scrollView: UIScrollView!
+    
+//    @IBOutlet weak var contentView: UIView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        collectionView.register(SpotCell.self, forCellWithReuseIdentifier: "cell")
+//        collectionView.register(UINib(nibName: "SpotCell.xib", bundle: nil), forCellWithReuseIdentifier: "cell")
         
 //        let navigationBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 100))
 //        let navigationItem = UINavigationItem(title: "Your Dibs")
 //        navigationBar.setItems([navigationItem], animated: false)
 //        view.addSubview(navigationBar)
+//        print(scrollView.frame.size.width)
+//        print(view.frame.size.width)
+//        print(contentView.frame.size.width)
+//        scrollView.contentSize = CGSize(width: 1000, height: 2000)
         
-        contentView.addSubview(collectionView)
+        view.addSubview(collectionView)
+        let topConstant = CGFloat(view.frame.size.height/6)
+        collectionView.topAnchor.constraint(equalTo: bannerView.bottomAnchor, constant: 0).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
         
-        collectionView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 100).isActive = true
-        collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -40).isActive = true
-        collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 40).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -40).isActive = true
+//        view.addSubview(bannerView)
+//        bannerView.topAnchor.constraint(equalTo: view.topAnchor, constant: 10).isActive = true
+//        bannerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 100).isActive = true
+//        bannerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
+//        bannerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
+//        bannerView.backgroundColor = .red
+        bannerView.addSubview(titleLabel)
+//        titleLabel.bottomAnchor.constraint(equalTo: bannerView.bottomAnchor, constant: -10).isActive = true
+        titleLabel.leadingAnchor.constraint(equalTo: bannerView.leadingAnchor, constant: 10).isActive = true
         
-        collectionView.isScrollEnabled = false
+        
+        collectionView.isScrollEnabled = true
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.dragDelegate = self
         collectionView.dropDelegate = self
         collectionView.dragInteractionEnabled = true
         
-        collectionView.reloadData()
+//        collectionView.reloadData()
         
         
         // Do any additional setup after loading the view.
         
         // get data of how many Spots from spot class
-        spotCount = 3
+        spotCount = 8
         
         
     }
@@ -93,9 +132,13 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! SpotCell
+        let cell: SpotCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! SpotCell
         cell.occupancyView.backgroundColor = colors[indexPath.row]
         return cell
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        scrollView.contentOffset.x = 0.0
     }
     
 }
@@ -165,30 +208,48 @@ extension HomeViewController: UICollectionViewDragDelegate, UICollectionViewDrop
 
 
 
-class SpotCell: UICollectionViewCell {
-    
-    fileprivate let occupancyView: UIView = {
-        let view = UIView(frame: .zero)
-        view.backgroundColor = .blue
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.clipsToBounds = true
-        return view
-    }()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        contentView.clipsToBounds = true
-        contentView.layer.cornerRadius = contentView.frame.height/8.0
-        contentView.addSubview(occupancyView)
-        occupancyView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
-        occupancyView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
-        occupancyView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
-        occupancyView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -3*contentView.frame.width/4).isActive = true
-        
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-}
+//class SpotCell: UICollectionViewCell {
+//
+//    fileprivate let occupancyView: UIView = {
+//        let view = UIView(frame: .zero)
+////        view.backgroundColor = .blue
+//        view.translatesAutoresizingMaskIntoConstraints = false
+//        view.clipsToBounds = true
+//        return view
+//    }()
+//
+//    fileprivate let label: UILabel = {
+//        let label = UILabel()
+//        label.translatesAutoresizingMaskIntoConstraints = false
+//        label.text = "20/30"
+//        label.font = .systemFont(ofSize: 20)
+//        return label
+//    }()
+//
+//    override init(frame: CGRect) {
+//        super.init(frame: frame)
+//
+//        contentView.backgroundColor = .blue
+//        contentView.clipsToBounds = true
+//        contentView.layer.cornerRadius = contentView.frame.height/8.0
+//
+//        contentView.addSubview(occupancyView)
+//        occupancyView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+//        occupancyView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+//        occupancyView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+//        occupancyView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -3*contentView.frame.width/4).isActive = true
+//
+//        occupancyView.addSubview(label)
+//        label.widthAnchor.constraint(equalToConstant: 100).isActive = true
+//        label.centerYAnchor.constraint(equalTo: occupancyView.centerYAnchor).isActive = true
+////        contentView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: ).isActive = true
+////        label.centerXAnchor.constraint(equalTo: occupancyView.centerXAnchor, constant: occupancyView.frame.width/2).isActive = true
+////        contentView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -3*contentView.frame.width/4).isActive = true
+//
+//    }
+//
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+//
+//}
