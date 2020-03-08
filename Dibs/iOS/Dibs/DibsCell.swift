@@ -13,6 +13,7 @@ class DibsCell: UICollectionViewCell {
     
     @IBOutlet weak var occupancyView: UIView!
     @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var openSpotCountLabel: UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,8 +27,12 @@ class DibsCell: UICollectionViewCell {
     }
     
     func sharedInit() {
+        self.backgroundView?.clipsToBounds = true
         self.contentView.clipsToBounds = true
-        self.contentView.layer.cornerRadius = self.contentView.frame.size.height/8.0
+        let cornerRadius = self.contentView.frame.size.height/7.0
+        
+        self.backgroundView?.layer.cornerRadius = cornerRadius
+        self.contentView.layer.cornerRadius = cornerRadius
         
         print("AHHH")
     }

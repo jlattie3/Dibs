@@ -40,7 +40,9 @@ class HomeViewController: UIViewController {
     
     fileprivate let colors = [UIColor.green, UIColor.yellow, UIColor.red, UIColor.green, UIColor.red, UIColor.green, UIColor.red, UIColor.green]
     
-    fileprivate var spotTags = ["Green", "Yellow", "Red", "Green", "Red", "Green", "Red", "Green"]
+    fileprivate var spotCounts = ["10", "20", "30"]
+    
+    fileprivate var spotTags = ["Klaus", "Van Leer", "McCamish Pavilion", "Green", "Red", "Green", "Red", "Green"]
     
     fileprivate var spotCount: Int = 0
 
@@ -54,7 +56,7 @@ class HomeViewController: UIViewController {
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.minimumLineSpacing = 20.0
+        layout.minimumLineSpacing = 15.0
         collectionView.setCollectionViewLayout(layout, animated: true)
         collectionView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
 //        collectionView.backgroundColor = .blue
@@ -98,7 +100,7 @@ class HomeViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         // get data of how many Spots from spot class
-        spotCount = 8
+        spotCount = 3
         
 //        collectionView.reloadData()
         
@@ -122,7 +124,7 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 207.0)
+        return CGSize(width: 0.95*collectionView.frame.width, height: collectionView.frame.width/2.0)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -143,6 +145,9 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         print(cell)
         if let label = cell.locationLabel {
             label.text = spotTags[indexPath.row]
+        }
+        if let countLabel = cell.openSpotCountLabel {
+            countLabel.text = spotCounts[indexPath.row]
         }
         return cell
     }
@@ -176,9 +181,11 @@ extension HomeViewController: UICollectionViewDragDelegate, UICollectionViewDrop
     
     func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
         let tag = spotTags[indexPath.row]
+        let count = spotCounts[indexPath.row]
+        let arr = [tag, count]
         let itemProvider = NSItemProvider(object: tag as NSString)
         let dragItem = UIDragItem(itemProvider: itemProvider)
-        dragItem.localObject = tag
+        dragItem.localObject = arr
         print("Touched \(tag)")
         return [dragItem]
     }
@@ -204,10 +211,16 @@ extension HomeViewController: UICollectionViewDragDelegate, UICollectionViewDrop
             let sourceIndexPath = item.sourceIndexPath {
             
             collectionView.performBatchUpdates({
-                self.spotTags.remove(at: sourceIndexPath.item)
-                self.spotTags.insert(item.dragItem.localObject as! String, at: destinationIndexPath.item)
-                collectionView.deleteItems(at: [sourceIndexPath])
-                collectionView.insertItems(at: [destinationIndexPath])
+                
+                if let arr = item.dragItem.localObject as? [NSString] {
+                    self.spotTags.remove(at: sourceIndexPath.item)
+                    self.spotTags.insert(arr[0] as String, at: destinationIndexPath.item)
+                    self.spotCounts.remove(at: sourceIndexPath.item)
+                    self.spotCounts.insert(arr[1] as String, at: destinationIndexPath.item)
+                    collectionView.deleteItems(at: [sourceIndexPath])
+                    collectionView.insertItems(at: [destinationIndexPath])
+                }
+                
             }, completion: nil)
             
             coordinator.drop(item.dragItem, toItemAt: destinationIndexPath)
@@ -215,51 +228,3 @@ extension HomeViewController: UICollectionViewDragDelegate, UICollectionViewDrop
     }
     
 }
-
-
-
-//class SpotCell: UICollectionViewCell {
-//
-//    fileprivate let occupancyView: UIView = {
-//        let view = UIView(frame: .zero)
-////        view.backgroundColor = .blue
-//        view.translatesAutoresizingMaskIntoConstraints = false
-//        view.clipsToBounds = true
-//        return view
-//    }()
-//
-//    fileprivate let label: UILabel = {
-//        let label = UILabel()
-//        label.translatesAutoresizingMaskIntoConstraints = false
-//        label.text = "20/30"
-//        label.font = .systemFont(ofSize: 20)
-//        return label
-//    }()
-//
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//
-//        contentView.backgroundColor = .blue
-//        contentView.clipsToBounds = true
-//        contentView.layer.cornerRadius = contentView.frame.height/8.0
-//
-//        contentView.addSubview(occupancyView)
-//        occupancyView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
-//        occupancyView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
-//        occupancyView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
-//        occupancyView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -3*contentView.frame.width/4).isActive = true
-//
-//        occupancyView.addSubview(label)
-//        label.widthAnchor.constraint(equalToConstant: 100).isActive = true
-//        label.centerYAnchor.constraint(equalTo: occupancyView.centerYAnchor).isActive = true
-////        contentView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: ).isActive = true
-////        label.centerXAnchor.constraint(equalTo: occupancyView.centerXAnchor, constant: occupancyView.frame.width/2).isActive = true
-////        contentView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -3*contentView.frame.width/4).isActive = true
-//
-//    }
-//
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-//
-//}
