@@ -11,17 +11,19 @@ import UIKit
 class HomeViewController: UIViewController {
     
     
-    fileprivate let collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        layout.minimumLineSpacing = 20.0
-        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.translatesAutoresizingMaskIntoConstraints = false
-        cv.register(SpotCell.self, forCellWithReuseIdentifier: "cell")
-        cv.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
-        return cv
-    }()
+//    fileprivate let collectionView: UICollectionView = {
+//        let layout = UICollectionViewFlowLayout()
+//        layout.scrollDirection = .vertical
+//        layout.minimumLineSpacing = 20.0
+//        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+//        cv.translatesAutoresizingMaskIntoConstraints = false
+////        cv.register(SpotCell.self, forCellWithReuseIdentifier: "spotCell")
+//        cv.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
+//        return cv
+    //    }()
     
+    
+    @IBOutlet weak var collectionView: UICollectionView!
     
     fileprivate let titleLabel: UILabel = {
         let label = UILabel()
@@ -50,8 +52,13 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView.register(SpotCell.self, forCellWithReuseIdentifier: "cell")
-//        collectionView.register(UINib(nibName: "SpotCell.xib", bundle: nil), forCellWithReuseIdentifier: "cell")
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.minimumLineSpacing = 20.0
+        collectionView.setCollectionViewLayout(layout, animated: true)
+        collectionView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
+//        collectionView.backgroundColor = .blue
+//        collectionView.register(UINib(nibName: "SpotCell", bundle: nil), forCellWithReuseIdentifier: "spotCell")
         
 //        let navigationBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 100))
 //        let navigationItem = UINavigationItem(title: "Your Dibs")
@@ -62,12 +69,12 @@ class HomeViewController: UIViewController {
 //        print(contentView.frame.size.width)
 //        scrollView.contentSize = CGSize(width: 1000, height: 2000)
         
-        view.addSubview(collectionView)
-        let topConstant = CGFloat(view.frame.size.height/6)
-        collectionView.topAnchor.constraint(equalTo: bannerView.bottomAnchor, constant: 0).isActive = true
-        collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10).isActive = true
-        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
+//        view.addSubview(collectionView)
+//        let topConstant = CGFloat(view.frame.size.height/6)
+//        collectionView.topAnchor.constraint(equalTo: bannerView.bottomAnchor, constant: 0).isActive = true
+//        collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10).isActive = true
+//        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
+//        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
         
 //        view.addSubview(bannerView)
 //        bannerView.topAnchor.constraint(equalTo: view.topAnchor, constant: 10).isActive = true
@@ -87,13 +94,13 @@ class HomeViewController: UIViewController {
         collectionView.dropDelegate = self
         collectionView.dragInteractionEnabled = true
         
-//        collectionView.reloadData()
-        
-        
+            
         // Do any additional setup after loading the view.
         
         // get data of how many Spots from spot class
         spotCount = 8
+        
+//        collectionView.reloadData()
         
         
     }
@@ -115,7 +122,7 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: collectionView.frame.width/2.0)
+        return CGSize(width: collectionView.frame.width, height: 207.0)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -132,8 +139,11 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: SpotCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! SpotCell
-        cell.occupancyView.backgroundColor = colors[indexPath.row]
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dibsCell", for: indexPath) as! DibsCell
+        print(cell)
+        if let label = cell.locationLabel {
+            label.text = spotTags[indexPath.row]
+        }
         return cell
     }
     
