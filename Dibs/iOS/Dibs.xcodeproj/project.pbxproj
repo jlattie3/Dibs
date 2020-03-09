@@ -151,20 +151,17 @@
 		9A61EAF623C4100A00D66F2E /* Dibs */ = {
 			isa = PBXGroup;
 			children = (
+				9ADC9C2C2416DA6B0063FAF6 /* Model */,
 				9ACEAED723F0815B00666CED /* Dibs.entitlements */,
 				9A3D5A1B23DA150E007E88E9 /* GoogleService-Info.plist */,
 				9A61EAF723C4100A00D66F2E /* AppDelegate.swift */,
 				9A61EAF923C4100A00D66F2E /* SceneDelegate.swift */,
-				9A61EAFB23C4100A00D66F2E /* ViewController.swift */,
 				9ACEAED823F204CE00666CED /* IntroViewController.swift */,
-				9A21A9C623F22F34008A9CFE /* ScannerViewController.swift */,
-				9A3D5A1F23E0F7E9007E88E9 /* LoginViewController.swift */,
+				9ADC9C2B2416DA240063FAF6 /* Old Files */,
 				9A3D5A1223DA0E2A007E88E9 /* FIRDatabaseController.swift */,
 				9A61EAFD23C4100A00D66F2E /* Main.storyboard */,
 				9ADC9C2924145B4F0063FAF6 /* DibsCell.swift */,
-				9ADC9C25240EC4640063FAF6 /* SpotCell.xib */,
 				9A9EDF5D24086EC900C49471 /* HomeViewController.swift */,
-				9ADC9C27240EC5010063FAF6 /* SpotCell.swift */,
 				9A9EDF5B2400624900C49471 /* LoginSignupViewController.swift */,
 				9A61EB0323C4100F00D66F2E /* Assets.xcassets */,
 				9A61EB0523C4100F00D66F2E /* LaunchScreen.storyboard */,
@@ -190,6 +187,25 @@
 				9A61EB1E23C4100F00D66F2E /* Info.plist */,
 			);
 			path = DibsUITests;
+			sourceTree = "<group>";
+		};
+		9ADC9C2B2416DA240063FAF6 /* Old Files */ = {
+			isa = PBXGroup;
+			children = (
+				9ADC9C25240EC4640063FAF6 /* SpotCell.xib */,
+				9A61EAFB23C4100A00D66F2E /* ViewController.swift */,
+				9A21A9C623F22F34008A9CFE /* ScannerViewController.swift */,
+				9A3D5A1F23E0F7E9007E88E9 /* LoginViewController.swift */,
+				9ADC9C27240EC5010063FAF6 /* SpotCell.swift */,
+			);
+			path = "Old Files";
+			sourceTree = "<group>";
+		};
+		9ADC9C2C2416DA6B0063FAF6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		D4379C9F7196349975C251B3 /* Pods */ = {

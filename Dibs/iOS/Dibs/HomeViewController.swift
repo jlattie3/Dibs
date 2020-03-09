@@ -25,6 +25,7 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    
     fileprivate let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Your Dibs"
@@ -40,7 +41,7 @@ class HomeViewController: UIViewController {
     
     fileprivate let colors = [UIColor.green, UIColor.yellow, UIColor.red, UIColor.green, UIColor.red, UIColor.green, UIColor.red, UIColor.green]
     
-    fileprivate var spotCounts = ["10", "20", "30"]
+    fileprivate var spotCounts = ["10", "20", "30", "10", "20", "30", "10", "20", "30"]
     
     fileprivate var spotTags = ["Klaus", "Van Leer", "McCamish Pavilion", "Green", "Red", "Green", "Red", "Green"]
     
@@ -56,38 +57,11 @@ class HomeViewController: UIViewController {
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.minimumLineSpacing = 15.0
+        layout.minimumLineSpacing = 10.0
+        layout.minimumInteritemSpacing = 0.0
+        layout.itemSize = CGSize(width: collectionView.frame.width/2.0, height: collectionView.frame.height/1.5)
         collectionView.setCollectionViewLayout(layout, animated: true)
-        collectionView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
-//        collectionView.backgroundColor = .blue
-//        collectionView.register(UINib(nibName: "SpotCell", bundle: nil), forCellWithReuseIdentifier: "spotCell")
-        
-//        let navigationBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 100))
-//        let navigationItem = UINavigationItem(title: "Your Dibs")
-//        navigationBar.setItems([navigationItem], animated: false)
-//        view.addSubview(navigationBar)
-//        print(scrollView.frame.size.width)
-//        print(view.frame.size.width)
-//        print(contentView.frame.size.width)
-//        scrollView.contentSize = CGSize(width: 1000, height: 2000)
-        
-//        view.addSubview(collectionView)
-//        let topConstant = CGFloat(view.frame.size.height/6)
-//        collectionView.topAnchor.constraint(equalTo: bannerView.bottomAnchor, constant: 0).isActive = true
-//        collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10).isActive = true
-//        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
-//        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
-        
-//        view.addSubview(bannerView)
-//        bannerView.topAnchor.constraint(equalTo: view.topAnchor, constant: 10).isActive = true
-//        bannerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 100).isActive = true
-//        bannerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
-//        bannerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
-//        bannerView.backgroundColor = .red
-        bannerView.addSubview(titleLabel)
-//        titleLabel.bottomAnchor.constraint(equalTo: bannerView.bottomAnchor, constant: -10).isActive = true
-        titleLabel.leadingAnchor.constraint(equalTo: bannerView.leadingAnchor, constant: 10).isActive = true
-        
+        collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 100, right: 10)
         
         collectionView.isScrollEnabled = true
         collectionView.delegate = self
@@ -100,7 +74,7 @@ class HomeViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         // get data of how many Spots from spot class
-        spotCount = 3
+        spotCount = 7
         
 //        collectionView.reloadData()
         
@@ -124,7 +98,8 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 0.95*collectionView.frame.width, height: collectionView.frame.width/2.0)
+        // 0.95*collectionView.frame.width
+        return CGSize(width: collectionView.frame.width/2.0 - 15.0, height: collectionView.frame.width/2.0 - 15.0)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -146,15 +121,15 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         if let label = cell.locationLabel {
             label.text = spotTags[indexPath.row]
         }
-        if let countLabel = cell.openSpotCountLabel {
+        if let countLabel = cell.spotCountLabel {
             countLabel.text = spotCounts[indexPath.row]
         }
         return cell
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        scrollView.contentOffset.x = 0.0
-    }
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        scrollView.contentOffset.x = 0.0
+//    }
     
 }
 
