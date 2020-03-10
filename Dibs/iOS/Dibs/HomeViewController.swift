@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class HomeViewController: UIViewController {
     
@@ -25,13 +26,7 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    
-    fileprivate let titleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Your Dibs"
-        label.font = .boldSystemFont(ofSize: 30)
-        return label
-    }()
+    fileprivate let refreshControl = UIRefreshControl()
     
 //    fileprivate let bannerView: UIView = {
 //        let bannerView = UIView(frame: .zero)
@@ -63,6 +58,10 @@ class HomeViewController: UIViewController {
         collectionView.setCollectionViewLayout(layout, animated: true)
         collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 100, right: 10)
         
+        refreshControl.addTarget(self, action: #selector(didPullToRefresh(_:)), for: .valueChanged)
+//        collectionView.alwaysBounceVertical = true
+        collectionView.refreshControl = refreshControl
+        
         collectionView.isScrollEnabled = true
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -78,10 +77,22 @@ class HomeViewController: UIViewController {
         
 //        collectionView.reloadData()
         
-        
     }
     
-
+    @objc
+    private func didPullToRefresh(_ sender:Any) {
+        print("Refresh Data")
+        
+        let db = FireDatabaseController(ref: Database.database().reference())
+        let dibsChairList = db.readAllChairs()
+        print(dibsChairList)
+        for chair in dibsChairList {
+            print(chair)
+        }
+        
+        refreshControl.endRefreshing()
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -93,6 +104,8 @@ class HomeViewController: UIViewController {
     */
 
 }
+
+
 
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
