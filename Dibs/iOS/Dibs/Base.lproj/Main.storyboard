@@ -395,18 +395,6 @@ or Sign Up</string>
                                                         <constraint firstAttribute="height" constant="25" id="grf-ds-dCT"/>
                                                     </constraints>
                                                 </imageView>
-                                                <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9eK-tU-PWU">
-                                                    <rect key="frame" x="82.5" y="160" width="25" height="25"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="9eK-tU-PWU" secondAttribute="height" multiplier="1:1" id="1oz-6R-c3V"/>
-                                                        <constraint firstAttribute="width" constant="25" id="GdH-Dk-UNI"/>
-                                                    </constraints>
-                                                    <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <state key="normal" image="arrow-up"/>
-                                                    <connections>
-                                                        <segue destination="2qE-UZ-Ibj" kind="show" id="WRF-Bx-Oj2"/>
-                                                    </connections>
-                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="TAR-Fa-ZGN" secondAttribute="trailing" constant="10" id="0yN-0P-zrK"/>
@@ -416,12 +404,10 @@ or Sign Up</string>
                                                 <constraint firstItem="N7i-b6-b4n" firstAttribute="leading" secondItem="hFi-C1-APh" secondAttribute="leading" constant="10" id="SDa-nf-JqI"/>
                                                 <constraint firstItem="d6C-bN-eWT" firstAttribute="width" secondItem="hFi-C1-APh" secondAttribute="width" multiplier="0.821053" id="ZTz-3e-ulT"/>
                                                 <constraint firstItem="d6C-bN-eWT" firstAttribute="centerY" secondItem="hFi-C1-APh" secondAttribute="centerY" id="bTX-E1-3wy"/>
-                                                <constraint firstAttribute="bottom" secondItem="9eK-tU-PWU" secondAttribute="bottom" constant="5" id="hBn-e4-W7m"/>
                                                 <constraint firstItem="N7i-b6-b4n" firstAttribute="top" secondItem="d6C-bN-eWT" secondAttribute="bottom" id="iBN-LR-wsZ"/>
                                                 <constraint firstItem="J72-Se-cCT" firstAttribute="width" secondItem="hFi-C1-APh" secondAttribute="width" multiplier="0.75" id="lU2-1f-dZV"/>
                                                 <constraint firstItem="TAR-Fa-ZGN" firstAttribute="top" secondItem="hFi-C1-APh" secondAttribute="top" constant="10" id="og7-T0-RjJ"/>
                                                 <constraint firstItem="hPI-x0-LBg" firstAttribute="centerX" secondItem="TAR-Fa-ZGN" secondAttribute="centerX" id="rEz-Hm-LcP"/>
-                                                <constraint firstItem="9eK-tU-PWU" firstAttribute="centerX" secondItem="hFi-C1-APh" secondAttribute="centerX" id="vJT-mN-aVq"/>
                                                 <constraint firstItem="d6C-bN-eWT" firstAttribute="leading" secondItem="hFi-C1-APh" secondAttribute="leading" constant="8" id="w5Q-gJ-089"/>
                                                 <constraint firstItem="hPI-x0-LBg" firstAttribute="top" secondItem="TAR-Fa-ZGN" secondAttribute="bottom" constant="5" id="yTE-m7-o9D"/>
                                             </constraints>
@@ -430,6 +416,7 @@ or Sign Up</string>
                                         <connections>
                                             <outlet property="locationLabel" destination="J72-Se-cCT" id="Qvk-gO-iGK"/>
                                             <outlet property="spotCountLabel" destination="d6C-bN-eWT" id="qtl-93-ERm"/>
+                                            <segue destination="2qE-UZ-Ibj" kind="show" id="0d9-CP-k5g"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -660,7 +647,6 @@ or Sign Up</string>
         </scene>
     </scenes>
     <resources>
-        <image name="arrow-up" width="512" height="512"/>
         <image name="bell" catalog="system" width="64" height="62"/>
         <image name="chair_BG" width="562.5" height="1218"/>
         <image name="hourglass" catalog="system" width="54" height="64"/>
