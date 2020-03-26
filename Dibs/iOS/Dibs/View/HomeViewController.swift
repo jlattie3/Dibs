@@ -72,6 +72,9 @@ class HomeViewController: UIViewController {
             
         // Do any additional setup after loading the view.
         
+
+//        collectionView.refreshControl?.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -40).isActive = true
+        collectionView.refreshControl?.translatesAutoresizingMaskIntoConstraints = false
         // get data of how many Spots from spot class
         spotCount = 7
         
@@ -107,7 +110,7 @@ class HomeViewController: UIViewController {
 
 
 
-
+// MARK: - UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
 extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -146,6 +149,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
     
 }
 
+// MARK: - UICollectionViewDragDelegate, UICollectionViewDropDelegate
 extension HomeViewController: UICollectionViewDragDelegate, UICollectionViewDropDelegate {
     
     func collectionView(_ collectionView: UICollectionView, canHandle session: UIDropSession) -> Bool {
