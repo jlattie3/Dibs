@@ -12,14 +12,53 @@ import Firebase
 public class FireDatabaseController {
     
     var ref: DatabaseReference!
+    var thisDibsChairList: [DibsChair] = []
+    var count: Int = 0
+    var validRead: Bool = false
+    var spotDict = Dictionary<String, Int>()
     
     init(ref: DatabaseReference) {
         self.ref = ref
+//        readTest()
+//        print(self.thisDibsChairList)
     }
     
-    func readAllChairs() -> [DibsChair] {
+    
+    func readTest() {
+        
+        self.ref.child("chair").observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            guard let value = snapshot.value as? NSDictionary else {
+                print("Invalid Firebase Read")
+                return
+            }
+            
+            print(".")
+            let keys = value.allKeys
+            print("Keys: ")
+            print(keys)
+            print(".")
+            self.count = 10000
+            self.thisDibsChairList = [DibsChair()]
+            self.spotDict = self.getDictOfDibsBuildings()
+        
+        }) { (error) in
+            print("readAllChairs error")
+            print(error.localizedDescription)
+        }
+        
+    }
+    
+    func didRecieve(boolean: Bool) {
+        self.validRead = boolean
+    }
+    
+
+    func readAllChairs() {
         
         var dibsChairList = [DibsChair]()
+        
+        self.count = 7
         
         self.ref.child("chair").observeSingleEvent(of: .value, with: { (snapshot) in
             // Get chair data
@@ -34,11 +73,16 @@ public class FireDatabaseController {
             print("Keys: ")
             print(keys)
             
+            self.count = 10
+            
             for key in keys {
                 
                 let dibsChair = DibsChair()
                 
                 if let chair_dict = value[key] as? NSDictionary {
+                    
+                    print("------")
+                    
                     if let building = chair_dict["Building"] as? String {
                         print(building)
                         dibsChair.building = building
@@ -56,19 +100,68 @@ public class FireDatabaseController {
                         dibsChair.status = status
                     }
                     dibsChairList.append(dibsChair)
+                    print("------")
                 } else {
                     continue
                 }
                 
             }
+            self.thisDibsChairList = dibsChairList
+            self.spotDict = self.getDictOfDibsBuildings()
             print(".")
             print(".")
             print(".")
-
+            
+            if dibsChairList.isEmpty {
+                self.didRecieve(boolean: false)
+            } else {
+                self.didRecieve(boolean: true)
+            }
+//            print(dibsChairList)
+//            self.thisDibsChairList = dibsChairList
+//            self.validRead = true
+            
         }) { (error) in
+            print("readAllChairs error")
             print(error.localizedDescription)
         }
-        return dibsChairList
+        
+        print("Here")
+        print(dibsChairList)
+        print(self.thisDibsChairList)
+        
+    }
+    
+    func getDictOfDibsBuildings() -> Dictionary<String, Int> {
+        
+        var buildingDict = Dictionary<String, Int>()
+        
+        for chair in self.thisDibsChairList {
+            buildingDict[chair.building, default: 0] += 1
+        }
+        print(buildingDict)
+        return buildingDict
+    }
+    
+    func createDibsCellsFromDatabase() -> [DibsCell] {
+    
+        var dibsCellList: [DibsCell] = []
+
+        let buildingDict = getDictOfDibsBuildings()
+        
+        print("ahhh")
+        print(buildingDict)
+        
+        for (key, buildingCount) in buildingDict {
+            let cell = DibsCell()
+            
+            cell.locationLabel.text = key
+            cell.spotCountLabel.text = String(buildingCount)
+            
+            dibsCellList.append(cell)
+        }
+        
+        return dibsCellList
     }
     
     
@@ -107,9 +200,6 @@ public class FireDatabaseController {
         return dibsChair
         
     }
-    
-    
-    
     
 }
 

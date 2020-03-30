@@ -14,6 +14,7 @@ class DibsCell: UICollectionViewCell {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var spotCountLabel: UILabel!
     
+//    var spotsArray: [DibsChair]
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -48,6 +49,16 @@ class DibsCell: UICollectionViewCell {
         layer.backgroundColor = UIColor.clear.cgColor
         
         print("AHHH")
+        
+        setupCellUI()
     }
+    
+    func setupCellUI() {
+        
+        // loop over DibsSpots and set UI elements
+        
+        
+    }
+    
     
 }

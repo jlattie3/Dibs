@@ -36,9 +36,12 @@ class HomeViewController: UIViewController {
     
     fileprivate let colors = [UIColor.green, UIColor.yellow, UIColor.red, UIColor.green, UIColor.red, UIColor.green, UIColor.red, UIColor.green]
     
-    fileprivate var spotCounts = ["10", "20", "30", "10", "20", "30", "10", "20", "30"]
+    fileprivate var spotCounts = ["0", "20", "30", "10", "20", "30", "10", "20", "30"]
     
-    fileprivate var spotTags = ["Klaus", "Van Leer", "McCamish Pavilion", "Green", "Red", "Green", "Red", "Green"]
+    fileprivate var spotTags = ["CULC (test)", "Van Leer", "McCamish Pavilion", "Green", "Red", "Green", "Red", "Green"]
+    
+    fileprivate var spotDict = Dictionary<String, Int>()
+    var thisDibsChairList: [DibsChair] = []
     
     fileprivate var spotCount: Int = 0
 
@@ -46,6 +49,7 @@ class HomeViewController: UIViewController {
     
 //    @IBOutlet weak var contentView: UIView!
     
+    let db = Database.database().reference()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,23 +79,112 @@ class HomeViewController: UIViewController {
 
 //        collectionView.refreshControl?.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -40).isActive = true
         collectionView.refreshControl?.translatesAutoresizingMaskIntoConstraints = false
-        // get data of how many Spots from spot class
-        spotCount = 7
+        // get data of how many Spots from spot class (tester + db.count + add_new_cell)
+        self.spotCount = 1 + self.spotDict.count + 1
         
 //        collectionView.reloadData()
+        print("Debug")
+//        db.readTest()
+//        DispatchQueue.main.async {
+//            self.db.readAllChairs()
+//        }
+//        db.readAllChairs()
+//        print(db.count)
+//        self.spotDict = db.getDictOfDibsBuildings()
+//        db.readAllChairs()
+//        self.spotDict = db.getDictOfDibsBuildings()
+//        print(self.spotDict)
+        readAllChairs()
+        print(self.spotDict)
+    }
+    
+    func readAllChairs() {
+        var dibsChairList = [DibsChair]()
+        self.db.child("chair").observe(.value, with: { (snapshot) in
+            // Get chair data
+            guard let value = snapshot.value as? NSDictionary else {
+                print("Invalid Firebase Read")
+                return
+            }
+            print(".")
+            print(".")
+            print(".")
+            let keys = value.allKeys
+            print("Keys: ")
+            print(keys)
+            
+            for key in keys {
+                
+                let dibsChair = DibsChair()
+                
+                if let chair_dict = value[key] as? NSDictionary {
+                    
+                    print("------")
+                    
+                    if let building = chair_dict["Building"] as? String {
+                        print(building)
+                        dibsChair.building = building
+                    }
+                    if let floor = chair_dict["Floor"] as? String {
+                        print(floor)
+                        dibsChair.floor = floor
+                    }
+                    if let room = chair_dict["Room"] as? String {
+                        print(room)
+                        dibsChair.room = room
+                    }
+                    if let status = chair_dict["status"] as? String {
+                        print(status)
+                        dibsChair.status = status
+                    }
+                    dibsChairList.append(dibsChair)
+                    print("------")
+                } else {
+                    continue
+                }
+                
+            }
+            self.thisDibsChairList = dibsChairList
+            self.spotDict = self.getDictOfDibsBuildings()
+            print(".")
+            print(".")
+            print(".")
+            
+            if dibsChairList.isEmpty {
+                print("No change in data")
+            } else {
+                self.spotCount += self.spotDict.count
+                self.collectionView.reloadData()
+            }
+//            print(dibsChairList)
+//            self.thisDibsChairList = dibsChairList
+//            self.validRead = true
+            
+        }) { (error) in
+            print("readAllChairs error")
+            print(error.localizedDescription)
+        }
+        print("Here")
+        print(dibsChairList)
+        print(self.thisDibsChairList)
+    }
         
+    func getDictOfDibsBuildings() -> Dictionary<String, Int> {
+        
+        var buildingDict = Dictionary<String, Int>()
+        
+        for chair in self.thisDibsChairList {
+            buildingDict[chair.building, default: 0] += 1
+        }
+        print(buildingDict)
+        return buildingDict
     }
     
     @objc
     private func didPullToRefresh(_ sender:Any) {
         print("Refresh Data")
-        
-        let db = FireDatabaseController(ref: Database.database().reference())
-        let dibsChairList = db.readAllChairs()
-        print(dibsChairList)
-        for chair in dibsChairList {
-            print(chair)
-        }
+        print(self.spotDict)
+
         
         refreshControl.endRefreshing()
     }
@@ -140,7 +233,13 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         if let countLabel = cell.spotCountLabel {
             countLabel.text = spotCounts[indexPath.row]
         }
+        print(cell.locationLabel.text)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dibsCell", for: indexPath) as! DibsCell
+        print(self.spotTags[indexPath.row])
     }
     
 //    func scrollViewDidScroll(_ scrollView: UIScrollView) {

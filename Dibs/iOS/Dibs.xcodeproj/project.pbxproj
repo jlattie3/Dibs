@@ -30,7 +30,7 @@
 		9ADC9C26240EC4640063FAF6 /* SpotCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ADC9C25240EC4640063FAF6 /* SpotCell.xib */; };
 		9ADC9C28240EC5010063FAF6 /* SpotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADC9C27240EC5010063FAF6 /* SpotCell.swift */; };
 		9ADC9C2A24145B4F0063FAF6 /* DibsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADC9C2924145B4F0063FAF6 /* DibsCell.swift */; };
-		9ADC9C2E2417E22E0063FAF6 /* DibsSpot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADC9C2D2417E22D0063FAF6 /* DibsSpot.swift */; };
+		9ADC9C2E2417E22E0063FAF6 /* DibsChair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADC9C2D2417E22D0063FAF6 /* DibsChair.swift */; };
 		D61F8E13D18026683A27A4A0 /* Pods_Dibs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D393296BBD644A070306D4D8 /* Pods_Dibs.framework */; };
 /* End PBXBuildFile section */
 
@@ -85,7 +85,7 @@
 		9ADC9C25240EC4640063FAF6 /* SpotCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpotCell.xib; sourceTree = "<group>"; };
 		9ADC9C27240EC5010063FAF6 /* SpotCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotCell.swift; sourceTree = "<group>"; };
 		9ADC9C2924145B4F0063FAF6 /* DibsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DibsCell.swift; sourceTree = "<group>"; };
-		9ADC9C2D2417E22D0063FAF6 /* DibsSpot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DibsSpot.swift; sourceTree = "<group>"; };
+		9ADC9C2D2417E22D0063FAF6 /* DibsChair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DibsChair.swift; sourceTree = "<group>"; };
 		C70A941AEB7C837C596D412E /* Pods-Dibs-DibsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dibs-DibsUITests.release.xcconfig"; path = "Target Support Files/Pods-Dibs-DibsUITests/Pods-Dibs-DibsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D393296BBD644A070306D4D8 /* Pods_Dibs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dibs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -221,7 +221,7 @@
 		9ADC9C2C2416DA6B0063FAF6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9ADC9C2D2417E22D0063FAF6 /* DibsSpot.swift */,
+				9ADC9C2D2417E22D0063FAF6 /* DibsChair.swift */,
 				9ADC9C2924145B4F0063FAF6 /* DibsCell.swift */,
 			);
 			path = Model;
@@ -483,7 +483,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9ADC9C2E2417E22E0063FAF6 /* DibsSpot.swift in Sources */,
+				9ADC9C2E2417E22E0063FAF6 /* DibsChair.swift in Sources */,
 				9A3D5A2023E0F7E9007E88E9 /* LoginViewController.swift in Sources */,
 				9A61EAFC23C4100A00D66F2E /* ViewController.swift in Sources */,
 				9ACEAED923F204CF00666CED /* IntroViewController.swift in Sources */,
