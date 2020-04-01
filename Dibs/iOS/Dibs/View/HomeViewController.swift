@@ -38,7 +38,7 @@ class HomeViewController: UIViewController {
     
     fileprivate var spotCounts = ["0", "20", "30", "10", "20", "30", "10", "20", "30"]
     
-    fileprivate var spotTags = ["CULC (test)", "Van Leer", "McCamish Pavilion", "Green", "Red", "Green", "Red", "Green"]
+    fileprivate var spotTags = ["CULC (test)", "Van Leer", "McCamish Pavilion", "Add"]
     
     fileprivate var spotDict = Dictionary<String, Int>()
     var thisDibsChairList: [DibsChair] = []
@@ -94,6 +94,7 @@ class HomeViewController: UIViewController {
 //        db.readAllChairs()
 //        self.spotDict = db.getDictOfDibsBuildings()
 //        print(self.spotDict)
+        
         readAllChairs()
         print(self.spotDict)
     }
@@ -225,6 +226,13 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        if (indexPath.row == self.spotTags.count - 1) {
+            print("Add Cell")
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "addDibsCell", for: indexPath) as! AddDibsCell
+            return cell
+        }
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dibsCell", for: indexPath) as! DibsCell
         print(cell)
         if let label = cell.locationLabel {
@@ -239,6 +247,16 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 //        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dibsCell", for: indexPath) as! DibsCell
+        if (indexPath.row == self.spotTags.count - 1) {
+            print("Add Cell Tapped")
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            let dibsSpotViewController = storyBoard.instantiateViewController(withIdentifier: "dibsSpotViewController") as! DibsSpotViewController
+            self.present(dibsSpotViewController, animated:true, completion:nil)
+        } else {
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            let dibsSpotViewController = storyBoard.instantiateViewController(withIdentifier: "dibsSpotViewController") as! DibsSpotViewController
+            self.present(dibsSpotViewController, animated:true, completion:nil)
+        }
         print(self.spotTags[indexPath.row])
     }
     

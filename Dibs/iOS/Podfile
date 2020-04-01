@@ -11,6 +11,7 @@ target 'Dibs' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Database'
   pod 'Pastel'
+  pod 'Charts'
 
   target 'DibsTests' do
     inherit! :search_paths

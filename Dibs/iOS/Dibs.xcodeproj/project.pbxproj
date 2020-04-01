@@ -31,6 +31,9 @@
 		9ADC9C28240EC5010063FAF6 /* SpotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADC9C27240EC5010063FAF6 /* SpotCell.swift */; };
 		9ADC9C2A24145B4F0063FAF6 /* DibsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADC9C2924145B4F0063FAF6 /* DibsCell.swift */; };
 		9ADC9C2E2417E22E0063FAF6 /* DibsChair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADC9C2D2417E22D0063FAF6 /* DibsChair.swift */; };
+		9AE7AB6824327B6400159DF2 /* DibsSpotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE7AB6724327B6400159DF2 /* DibsSpotViewController.swift */; };
+		9AE7AB6A24328B9F00159DF2 /* DibsSpotTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE7AB6924328B9F00159DF2 /* DibsSpotTableViewHeader.swift */; };
+		9AE7AB6C2433BC2D00159DF2 /* AddDibsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE7AB6B2433BC2D00159DF2 /* AddDibsCell.swift */; };
 		D61F8E13D18026683A27A4A0 /* Pods_Dibs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D393296BBD644A070306D4D8 /* Pods_Dibs.framework */; };
 /* End PBXBuildFile section */
 
@@ -86,6 +89,9 @@
 		9ADC9C27240EC5010063FAF6 /* SpotCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotCell.swift; sourceTree = "<group>"; };
 		9ADC9C2924145B4F0063FAF6 /* DibsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DibsCell.swift; sourceTree = "<group>"; };
 		9ADC9C2D2417E22D0063FAF6 /* DibsChair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DibsChair.swift; sourceTree = "<group>"; };
+		9AE7AB6724327B6400159DF2 /* DibsSpotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DibsSpotViewController.swift; sourceTree = "<group>"; };
+		9AE7AB6924328B9F00159DF2 /* DibsSpotTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DibsSpotTableViewHeader.swift; sourceTree = "<group>"; };
+		9AE7AB6B2433BC2D00159DF2 /* AddDibsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDibsCell.swift; sourceTree = "<group>"; };
 		C70A941AEB7C837C596D412E /* Pods-Dibs-DibsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dibs-DibsUITests.release.xcconfig"; path = "Target Support Files/Pods-Dibs-DibsUITests/Pods-Dibs-DibsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D393296BBD644A070306D4D8 /* Pods_Dibs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dibs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -194,6 +200,8 @@
 				9A9EDF5B2400624900C49471 /* LoginSignupViewController.swift */,
 				9A9EDF5D24086EC900C49471 /* HomeViewController.swift */,
 				9ACEAED823F204CE00666CED /* IntroViewController.swift */,
+				9AE7AB6724327B6400159DF2 /* DibsSpotViewController.swift */,
+				9AE7AB6924328B9F00159DF2 /* DibsSpotTableViewHeader.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -223,6 +231,7 @@
 			children = (
 				9ADC9C2D2417E22D0063FAF6 /* DibsChair.swift */,
 				9ADC9C2924145B4F0063FAF6 /* DibsCell.swift */,
+				9AE7AB6B2433BC2D00159DF2 /* AddDibsCell.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -483,11 +492,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AE7AB6824327B6400159DF2 /* DibsSpotViewController.swift in Sources */,
 				9ADC9C2E2417E22E0063FAF6 /* DibsChair.swift in Sources */,
 				9A3D5A2023E0F7E9007E88E9 /* LoginViewController.swift in Sources */,
 				9A61EAFC23C4100A00D66F2E /* ViewController.swift in Sources */,
 				9ACEAED923F204CF00666CED /* IntroViewController.swift in Sources */,
+				9AE7AB6A24328B9F00159DF2 /* DibsSpotTableViewHeader.swift in Sources */,
 				9A61EAF823C4100A00D66F2E /* AppDelegate.swift in Sources */,
+				9AE7AB6C2433BC2D00159DF2 /* AddDibsCell.swift in Sources */,
 				9ADC9C28240EC5010063FAF6 /* SpotCell.swift in Sources */,
 				9A9EDF5C2400624900C49471 /* LoginSignupViewController.swift in Sources */,
 				9A9EDF5E24086EC900C49471 /* HomeViewController.swift in Sources */,
