@@ -62,5 +62,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Allow &quot;Dibs&quot; to use your location while using the app?</string>
 </dict>
 </plist>

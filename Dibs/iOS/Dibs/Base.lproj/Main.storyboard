@@ -603,6 +603,7 @@ or Sign Up</string>
                     <navigationItem key="navigationItem" id="d5G-gb-jpL"/>
                     <connections>
                         <outlet property="barChartView" destination="0iy-nX-uKR" id="l24-dq-djn"/>
+                        <outlet property="buildingNameLabel" destination="UPV-bD-vGO" id="1hm-Wm-zrH"/>
                         <outlet property="floorPlanView" destination="eUT-Rd-TRT" id="2bh-jL-mlj"/>
                         <outlet property="handleView" destination="ab8-ea-PlH" id="2WB-GR-O3Z"/>
                         <outlet property="popularTimeView" destination="E5N-bN-43r" id="00k-ZJ-Mq3"/>
@@ -613,20 +614,42 @@ or Sign Up</string>
             </objects>
             <point key="canvasLocation" x="2295.6521739130435" y="77.678571428571431"/>
         </scene>
-        <!--View Controller-->
+        <!--Dibs Map View Controller-->
         <scene sceneID="5fZ-Yz-IQ6">
             <objects>
-                <viewController id="JL5-MH-DFd" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="dibsMapViewController" id="JL5-MH-DFd" customClass="DibsMapViewController" customModule="Dibs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fbq-pW-fzp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="ybN-kH-dXf">
+                                <rect key="frame" x="0.0" y="44" width="414" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gFp-fr-jxa">
+                                <rect key="frame" x="0.0" y="100" width="414" height="776"/>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="gFp-fr-jxa" firstAttribute="top" secondItem="ybN-kH-dXf" secondAttribute="bottom" id="0Ms-PQ-Jv6"/>
+                            <constraint firstItem="ybN-kH-dXf" firstAttribute="top" secondItem="UXy-K1-PFn" secondAttribute="top" id="Dy2-eC-dn8"/>
+                            <constraint firstAttribute="bottom" secondItem="gFp-fr-jxa" secondAttribute="bottom" constant="20" symbolic="YES" id="N9M-OX-lHh"/>
+                            <constraint firstItem="gFp-fr-jxa" firstAttribute="leading" secondItem="UXy-K1-PFn" secondAttribute="leading" id="bhc-zM-ZBR"/>
+                            <constraint firstItem="ybN-kH-dXf" firstAttribute="width" secondItem="fbq-pW-fzp" secondAttribute="width" id="l74-f5-6UD"/>
+                            <constraint firstItem="gFp-fr-jxa" firstAttribute="trailing" secondItem="UXy-K1-PFn" secondAttribute="trailing" id="px8-Ss-o0U"/>
+                            <constraint firstItem="ybN-kH-dXf" firstAttribute="centerX" secondItem="UXy-K1-PFn" secondAttribute="centerX" id="vrl-wC-WXi"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="UXy-K1-PFn"/>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="gFp-fr-jxa" id="o9J-gk-7bq"/>
+                        <outlet property="searchBar" destination="ybN-kH-dXf" id="y6b-CC-lrc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ec9-GE-fJy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2296" y="867"/>
+            <point key="canvasLocation" x="2295.6521739130435" y="866.51785714285711"/>
         </scene>
         <!--Scanner View Controller-->
         <scene sceneID="f2d-yv-8IS">

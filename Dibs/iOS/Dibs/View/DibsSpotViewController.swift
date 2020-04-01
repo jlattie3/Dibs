@@ -12,8 +12,8 @@ import Charts
 class DibsSpotViewController: UIViewController {
     
     @IBOutlet weak var handleView: UIView!
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var buildingLabel: UILabel!
+    @IBOutlet weak var buildingNameLabel: UILabel!
+    
     
     @IBOutlet weak var spotCountView: UIView!
     @IBOutlet weak var floorPlanView: UIView!
@@ -66,19 +66,9 @@ class DibsSpotViewController: UIViewController {
         self.floorPlanView.layer.shadowRadius = 5.0
         self.floorPlanView.layer.masksToBounds = false
         
-//        self.floorPlanView.clipsToBounds = true
-////        self.spotCountView.layer.masksToBounds = true
-////        self.spotCountView.layer.backgroundColor = UIColor.white.cgColor
-////        let spotCornerRadiusFloor = self.floorPlanView.frame.height / 15.0
-//        self.spotCountView.layer.masksToBounds = false
-//        self.floorPlanView.layer.cornerRadius = spotCornerRadius
-//        self.floorPlanView.layer.shadowPath = UIBezierPath(rect: self.floorPlanView.bounds).cgPath
-//        self.floorPlanView.layer.shadowOffset = CGSize(width: -1.0, height: 1.0)
-//        self.floorPlanView.layer.shadowColor = UIColor.lightGray.cgColor
-//        self.floorPlanView.layer.shadowRadius = 5.0
-//        self.floorPlanView.layer.shadowOpacity = 0.5
-//        self.floorPlanView.layer.shouldRasterize = true
-//        self.floorPlanView.layer.rasterizationScale = true ? UIScreen.main.scale : 1
+        
+        // building Name
+        self.buildingNameLabel.text = "Klaus Advanced Computing Building"
         
         
     }

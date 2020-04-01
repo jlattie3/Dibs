@@ -38,7 +38,7 @@ class HomeViewController: UIViewController {
     
     fileprivate var spotCounts = ["0", "20", "30", "10", "20", "30", "10", "20", "30"]
     
-    fileprivate var spotTags = ["CULC (test)", "Van Leer", "McCamish Pavilion", "Add"]
+    fileprivate var spotTags = ["CULC (test)", "Van Leer", "Klaus", "Add"]
     
     fileprivate var spotDict = Dictionary<String, Int>()
     var thisDibsChairList: [DibsChair] = []
@@ -250,8 +250,8 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         if (indexPath.row == self.spotTags.count - 1) {
             print("Add Cell Tapped")
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            let dibsSpotViewController = storyBoard.instantiateViewController(withIdentifier: "dibsSpotViewController") as! DibsSpotViewController
-            self.present(dibsSpotViewController, animated:true, completion:nil)
+            let dibsMapViewController = storyBoard.instantiateViewController(withIdentifier: "dibsMapViewController") as! DibsMapViewController
+            self.present(dibsMapViewController, animated:true, completion:nil)
         } else {
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
             let dibsSpotViewController = storyBoard.instantiateViewController(withIdentifier: "dibsSpotViewController") as! DibsSpotViewController
