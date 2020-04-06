@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import CoreData
 
 class HomeViewController: UIViewController {
     
@@ -38,12 +39,13 @@ class HomeViewController: UIViewController {
     
     fileprivate var spotCounts = ["0", "20", "30", "10", "20", "30", "10", "20", "30"]
     
-    fileprivate var spotTags = ["CULC (test)", "Van Leer", "Klaus", "Add"]
+    var spotTags: [String] = []
+    var buildingNames: [NSManagedObject] = []
     
     fileprivate var spotDict = Dictionary<String, Int>()
     var thisDibsChairList: [DibsChair] = []
     
-    fileprivate var spotCount: Int = 0
+//    fileprivate var spotCount: Int = 0
 
 //    @IBOutlet weak var scrollView: UIScrollView!
     
@@ -53,6 +55,12 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        readUserPref()
+        readAllChairs()
+        print("HERE ------------")
+        print(self.spotTags)
+        self.spotTags = ["CULC", "Klaus", "Van Leer", "Howey", "Student Center"]
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -74,13 +82,12 @@ class HomeViewController: UIViewController {
         collectionView.dragInteractionEnabled = true
         
             
-        // Do any additional setup after loading the view.
+        // Do any additional setup after loading the view
         
-
 //        collectionView.refreshControl?.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -40).isActive = true
         collectionView.refreshControl?.translatesAutoresizingMaskIntoConstraints = false
         // get data of how many Spots from spot class (tester + db.count + add_new_cell)
-        self.spotCount = 1 + self.spotDict.count + 1
+//        self.spotCount = 1 + self.spotDict.count + 1
         
 //        collectionView.reloadData()
         print("Debug")
@@ -94,9 +101,43 @@ class HomeViewController: UIViewController {
 //        db.readAllChairs()
 //        self.spotDict = db.getDictOfDibsBuildings()
 //        print(self.spotDict)
-        
-        readAllChairs()
-        print(self.spotDict)
+    }
+    
+    func readUserPref() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "DibsCellBuilding")
+        do {
+            let buildingNames = try managedContext.fetch(fetchRequest)
+            print("aAHHH ------")
+            print(buildingNames.count)
+            self.spotTags = Array(repeating: "", count: buildingNames.count)
+            
+            for building in buildingNames {
+                let name = building.value(forKey: "buildingName") as! String
+                let ind = building.value(forKey: "sortNum") as! Int16
+                self.spotTags.insert(name, at: Int(ind))
+            }
+            return
+            
+        } catch let error as NSError {
+           print("Could not fetch. \(error), \(error.userInfo)")
+        }
+    }
+    
+    func storeUserPref() {
+        print("Update data on Disk")
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "DibsCellBuilding", in: managedContext)!
+        for name in self.spotTags {
+            let person = NSManagedObject(entity: entity, insertInto: managedContext)
+            person.setValue(name, forKeyPath: "buildingName")
+        }
     }
     
     func readAllChairs() {
@@ -154,7 +195,6 @@ class HomeViewController: UIViewController {
             if dibsChairList.isEmpty {
                 print("No change in data")
             } else {
-                self.spotCount += self.spotDict.count
                 self.collectionView.reloadData()
             }
 //            print(dibsChairList)
@@ -213,21 +253,27 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return spotCount
+        return self.spotTags.count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
+        if indexPath.row == self.spotTags.count {
+            print("nope")
+            return false
+        }
         return true
     }
     
-    func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        print("Starting Index: \(sourceIndexPath.item)")
-        print("Ending Index: \(destinationIndexPath.item)")
-    }
+//    func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+//        print("Starting Index: \(sourceIndexPath.item)")
+//        print("Ending Index: \(destinationIndexPath.item)")
+//    }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if (indexPath.row == self.spotTags.count - 1) {
+        print("Row: \(indexPath.row)")
+        
+        if (indexPath.row == self.spotTags.count) {
             print("Add Cell")
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "addDibsCell", for: indexPath) as! AddDibsCell
             return cell
@@ -236,10 +282,10 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dibsCell", for: indexPath) as! DibsCell
         print(cell)
         if let label = cell.locationLabel {
-            label.text = spotTags[indexPath.row]
+            label.text = self.spotTags[indexPath.row]
         }
         if let countLabel = cell.spotCountLabel {
-            countLabel.text = spotCounts[indexPath.row]
+            countLabel.text = self.spotCounts[indexPath.row]
         }
         print(cell.locationLabel.text)
         return cell
@@ -247,7 +293,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 //        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dibsCell", for: indexPath) as! DibsCell
-        if (indexPath.row == self.spotTags.count - 1) {
+        if (indexPath.row == self.spotTags.count) {
             print("Add Cell Tapped")
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
             let dibsMapViewController = storyBoard.instantiateViewController(withIdentifier: "dibsMapViewController") as! DibsMapViewController
@@ -257,7 +303,6 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
             let dibsSpotViewController = storyBoard.instantiateViewController(withIdentifier: "dibsSpotViewController") as! DibsSpotViewController
             self.present(dibsSpotViewController, animated:true, completion:nil)
         }
-        print(self.spotTags[indexPath.row])
     }
     
 //    func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -283,7 +328,11 @@ extension HomeViewController: UICollectionViewDragDelegate, UICollectionViewDrop
     
     func collectionView(_ collectionView: UICollectionView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UICollectionViewDropProposal {
         if collectionView.hasActiveDrag {
-            return UICollectionViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
+            if let indexPath = destinationIndexPath {
+                if indexPath.row != self.spotTags.count {
+                    return UICollectionViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
+                }
+            }
         }
         return UICollectionViewDropProposal(operation: .forbidden)
     }
@@ -328,6 +377,8 @@ extension HomeViewController: UICollectionViewDragDelegate, UICollectionViewDrop
                     self.spotCounts.insert(arr[1] as String, at: destinationIndexPath.item)
                     collectionView.deleteItems(at: [sourceIndexPath])
                     collectionView.insertItems(at: [destinationIndexPath])
+                    
+                    self.storeUserPref()
                 }
                 
             }, completion: nil)

@@ -1,4 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="false" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19C57" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="DibsCellBuilding" representedClassName="DibsCellBuilding" syncable="YES" codeGenerationType="class">
+        <attribute name="buildingName" optional="YES" attributeType="String"/>
+        <attribute name="sortNum" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="sortNum"/>
+            </uniquenessConstraint>
+            <uniquenessConstraint>
+                <constraint value="buildingName"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="DibsCellBuildings" representedClassName="DibsCellBuildings" syncable="YES" codeGenerationType="class">
+        <attribute name="buildingName" optional="YES" attributeType="String"/>
+        <attribute name="sortNum" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="DibsHomeBuilding" representedClassName="DibsHomeBuilding" syncable="YES" codeGenerationType="class">
+        <attribute name="buildingName" optional="YES" attributeType="String"/>
+        <attribute name="sortNum" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <elements>
+        <element name="DibsCellBuildings" positionX="27314.8203125" positionY="-534.8359375" width="128" height="73"/>
+        <element name="DibsHomeBuilding" positionX="27333" positionY="-504" width="128" height="73"/>
+        <element name="DibsCellBuilding" positionX="27351" positionY="-477" width="128" height="73"/>
+    </elements>
 </model>

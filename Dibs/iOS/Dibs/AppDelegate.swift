@@ -18,10 +18,61 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+    
+        // Firebase Init
         FirebaseApp.configure()
-//        let db = FireDatabaseController(ref: Database.database().reference())
-//        db.read()
+        
+        // Grab Default CoreData for HomeView DibsCells (or user stored data)
+        var builingNames: [NSManagedObject] = []
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return true
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "DibsCellBuilding")
+        do {
+            builingNames = try managedContext.fetch(fetchRequest)
+            builingNames = []
+            print(builingNames)
+            if builingNames.isEmpty {
+                // local default arr
+                createDefaultData()
+            }
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+            return true
+        }
         return true
+    }
+    
+    func createDefaultData() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let defaultBuidlingNames = ["CULC", "Van Leer", "Klaus", "Student Center", "Howey"]
+        let entity = NSEntityDescription.entity(forEntityName: "DibsCellBuilding", in: managedContext)!
+        var i: Int = 0
+        for name in defaultBuidlingNames {
+            let building = NSManagedObject(entity: entity, insertInto: managedContext)
+            building.setValue(i, forKeyPath: "sortNum")
+            building.setValue(name, forKeyPath: "buildingName")
+            print(building)
+            i += 1
+            print(i)
+        }
+        do {
+            managedContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+//        do {
+//            builingNames = try managedContext.fetch(fetchRequest)
+//        } catch let error as NSError {
+//            print("Could not save. \(error), \(error.userInfo)")
+//        }
+//        print("App Delegate")
+//        print(builingNames)
     }
 
     // MARK: UISceneSession Lifecycle
@@ -41,6 +92,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Core Data stack
 
     lazy var persistentContainer: NSPersistentContainer = {
+        
         /*
          The persistent container for the application. This implementation
          creates and returns a container, having loaded the store for the
