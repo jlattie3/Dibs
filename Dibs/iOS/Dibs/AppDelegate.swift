@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import Firebase
+import Foundation
 
 
 @UIApplicationMain
@@ -22,57 +23,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Firebase Init
         FirebaseApp.configure()
         
-        // Grab Default CoreData for HomeView DibsCells (or user stored data)
-        var builingNames: [NSManagedObject] = []
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return true
+        // User Defaults for HomeView Settings
+        let userDefaults = UserDefaults.standard
+        if let userDict = userDefaults.object(forKey: "dibsSpotDict") {
+            print("Found Defaults!")
+            print(userDict)
+        } else {
+            print("No defaults set yet!")
+            let defaultDict = ["CULC" : 0,
+                               "Van Leer" : 1,
+                               "Klaus" : 2,
+                               "Student Center" : 3,
+                               "Howey" : 4]
+            userDefaults.set(defaultDict, forKey: "dibsSpotDict")
+            
+            print(userDefaults.object(forKey: "dibsSpotDict"))
         }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "DibsCellBuilding")
-        do {
-            builingNames = try managedContext.fetch(fetchRequest)
-            builingNames = []
-            print(builingNames)
-            if builingNames.isEmpty {
-                // local default arr
-                createDefaultData()
-            }
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
-            return true
-        }
+        print("App Delegate Done")
         return true
-    }
-    
-    func createDefaultData() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let defaultBuidlingNames = ["CULC", "Van Leer", "Klaus", "Student Center", "Howey"]
-        let entity = NSEntityDescription.entity(forEntityName: "DibsCellBuilding", in: managedContext)!
-        var i: Int = 0
-        for name in defaultBuidlingNames {
-            let building = NSManagedObject(entity: entity, insertInto: managedContext)
-            building.setValue(i, forKeyPath: "sortNum")
-            building.setValue(name, forKeyPath: "buildingName")
-            print(building)
-            i += 1
-            print(i)
-        }
-        do {
-            managedContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
-            try managedContext.save()
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
-        }
-//        do {
-//            builingNames = try managedContext.fetch(fetchRequest)
-//        } catch let error as NSError {
-//            print("Could not save. \(error), \(error.userInfo)")
-//        }
-//        print("App Delegate")
-//        print(builingNames)
     }
 
     // MARK: UISceneSession Lifecycle

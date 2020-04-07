@@ -190,6 +190,53 @@ class DibsSpotViewController: UIViewController {
         
     }
     
+    func drawCulcRooms() {
+        
+        // scaled variables
+        let width = self.floorView.frame.width
+        
+        let culcWidth: CGFloat = width * 5/6
+        let culcHeight: CGFloat = width * 5/6 * 2
+
+        let xOffset: CGFloat = width/2 - culcWidth/2
+        let yOffset: CGFloat = width/2 - culcWidth/2
+        
+        // room152
+        let room152 = CAShapeLayer()
+        self.floorScrollView.layer.addSublayer(room152)
+        room152.opacity = 0.5
+        room152.lineWidth = 1.0
+        room152.lineJoin = .miter
+        room152.strokeColor = #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)
+        room152.fillColor = UIColor.darkGray.cgColor
+        var path = UIBezierPath()
+        path.move(to: CGPoint(x: xOffset + 0.2316*culcWidth, y: yOffset + 0.1583*culcHeight))
+        path.addLine(to: CGPoint(x: xOffset + 0.758*culcWidth, y: yOffset + 0.1583*culcHeight))
+        path.addLine(to: CGPoint(x: xOffset + 0.758*culcWidth, y: yOffset + 0.378*culcHeight))
+        path.addLine(to: CGPoint(x: xOffset + 0.2316*culcWidth, y: yOffset + 0.378*culcHeight))
+        path.close()
+        room152.path = path.cgPath
+        
+        // room144
+        let room144 = CAShapeLayer()
+        self.floorScrollView.layer.addSublayer(room144)
+        room144.opacity = 0.5
+        room144.lineWidth = 1.0
+        room144.lineJoin = .miter
+        room144.strokeColor = #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)
+        room144.fillColor = UIColor.darkGray.cgColor
+        path = UIBezierPath()
+        path.move(to: CGPoint(x: xOffset + 0.2316*culcWidth, y: yOffset + 0.384*culcHeight))
+        path.addLine(to: CGPoint(x: xOffset + 0.758*culcWidth, y: yOffset + 0.384*culcHeight))
+        path.addLine(to: CGPoint(x: xOffset + 0.758*culcWidth, y: yOffset + 0.6166*culcHeight))
+        path.addLine(to: CGPoint(x: xOffset + 0.2316*culcWidth, y: yOffset + 0.6166*culcHeight))
+        path.close()
+        room144.path = path.cgPath
+        
+        
+        
+    }
+    
     /*
     // MARK: - Navigation
 

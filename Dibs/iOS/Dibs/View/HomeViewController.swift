@@ -56,11 +56,12 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        readUserPref()
-        readAllChairs()
+//        readUserPref()
+//        readAllChairs()
+        readUserDefaults()
         print("HERE ------------")
         print(self.spotTags)
-        self.spotTags = ["CULC", "Klaus", "Van Leer", "Howey", "Student Center"]
+//        self.spotTags = ["CULC", "Klaus", "Van Leer", "Howey", "Student Center"]
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -91,6 +92,7 @@ class HomeViewController: UIViewController {
         
 //        collectionView.reloadData()
         print("Debug")
+        print(self.spotTags)
 //        db.readTest()
 //        DispatchQueue.main.async {
 //            self.db.readAllChairs()
@@ -103,41 +105,24 @@ class HomeViewController: UIViewController {
 //        print(self.spotDict)
     }
     
-    func readUserPref() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "DibsCellBuilding")
-        do {
-            let buildingNames = try managedContext.fetch(fetchRequest)
-            print("aAHHH ------")
-            print(buildingNames.count)
-            self.spotTags = Array(repeating: "", count: buildingNames.count)
-            
-            for building in buildingNames {
-                let name = building.value(forKey: "buildingName") as! String
-                let ind = building.value(forKey: "sortNum") as! Int16
-                self.spotTags.insert(name, at: Int(ind))
+    func readUserDefaults() {
+        let userDefaults = UserDefaults.standard
+        if let spotDict = userDefaults.object(forKey: "dibsSpotDict") as? Dictionary<String, Int>{
+            self.spotDict = spotDict
+            self.spotTags = Array(repeating: " ", count: self.spotDict.count)
+            for (key, val) in self.spotDict {
+                self.spotTags[val] = key
             }
-            return
-            
-        } catch let error as NSError {
-           print("Could not fetch. \(error), \(error.userInfo)")
         }
     }
     
-    func storeUserPref() {
-        print("Update data on Disk")
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
+    func storeUserDefaults() {
+        let userDefaults = UserDefaults.standard
+        var storeDict: Dictionary<String, Int> = [:]
+        for (i, tag) in self.spotTags.enumerated() {
+            storeDict[tag] = i
         }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "DibsCellBuilding", in: managedContext)!
-        for name in self.spotTags {
-            let person = NSManagedObject(entity: entity, insertInto: managedContext)
-            person.setValue(name, forKeyPath: "buildingName")
-        }
+        userDefaults.set(storeDict, forKey: "dibsSpotDict")
     }
     
     func readAllChairs() {
@@ -263,16 +248,10 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         }
         return true
     }
-    
-//    func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-//        print("Starting Index: \(sourceIndexPath.item)")
-//        print("Ending Index: \(destinationIndexPath.item)")
-//    }
-    
+        
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         print("Row: \(indexPath.row)")
-        
         if (indexPath.row == self.spotTags.count) {
             print("Add Cell")
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "addDibsCell", for: indexPath) as! AddDibsCell
@@ -338,8 +317,12 @@ extension HomeViewController: UICollectionViewDragDelegate, UICollectionViewDrop
     }
     
     func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
-        let tag = spotTags[indexPath.row]
-        let count = spotCounts[indexPath.row]
+        var tag = " "
+        var count = " "
+        if indexPath.row < self.spotTags.count {
+            tag = spotTags[indexPath.row]
+            count = spotCounts[indexPath.row]
+        }
         let arr = [tag, count]
         let itemProvider = NSItemProvider(object: tag as NSString)
         let dragItem = UIDragItem(itemProvider: itemProvider)
@@ -378,7 +361,7 @@ extension HomeViewController: UICollectionViewDragDelegate, UICollectionViewDrop
                     collectionView.deleteItems(at: [sourceIndexPath])
                     collectionView.insertItems(at: [destinationIndexPath])
                     
-                    self.storeUserPref()
+                    self.storeUserDefaults()
                 }
                 
             }, completion: nil)

@@ -483,7 +483,6 @@ or Sign Up</string>
         <!--Dibs Spot View Controller-->
         <scene sceneID="1vs-St-u2M">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JWc-Ue-o3a" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="dibsSpotViewController" id="2qE-UZ-Ibj" customClass="DibsSpotViewController" customModule="Dibs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XTl-mO-TKB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -566,7 +565,7 @@ or Sign Up</string>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eUT-Rd-TRT">
                                 <rect key="frame" x="10.5" y="449.5" width="393" height="402.5"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pcg-oq-alD">
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pcg-oq-alD">
                                         <rect key="frame" x="0.0" y="85.5" width="78.5" height="317"/>
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ffj-GH-wMe">
@@ -690,6 +689,7 @@ or Sign Up</string>
                         <outlet property="spotCountView" destination="Xxb-LV-bwe" id="FRi-wL-l6r"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JWc-Ue-o3a" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2295.6521739130435" y="77.678571428571431"/>
         </scene>
