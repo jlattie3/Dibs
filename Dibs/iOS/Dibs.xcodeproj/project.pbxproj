@@ -36,6 +36,9 @@
 		9AE7AB6C2433BC2D00159DF2 /* AddDibsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE7AB6B2433BC2D00159DF2 /* AddDibsCell.swift */; };
 		9AE7AB6E243428B200159DF2 /* DibsMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE7AB6D243428B200159DF2 /* DibsMapViewController.swift */; };
 		9AE7AB7024343D1500159DF2 /* DibsMapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE7AB6F24343D1500159DF2 /* DibsMapAnnotation.swift */; };
+		9AE7AB87243B6C9800159DF2 /* FloorPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE7AB86243B6C9800159DF2 /* FloorPlanViewController.swift */; };
+		9AE7AB89243B7CE700159DF2 /* ScrollFloorPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE7AB88243B7CE700159DF2 /* ScrollFloorPlanViewController.swift */; };
+		9AE7AB8B243BF0AD00159DF2 /* FloorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE7AB8A243BF0AC00159DF2 /* FloorCell.swift */; };
 		D61F8E13D18026683A27A4A0 /* Pods_Dibs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D393296BBD644A070306D4D8 /* Pods_Dibs.framework */; };
 /* End PBXBuildFile section */
 
@@ -96,6 +99,9 @@
 		9AE7AB6B2433BC2D00159DF2 /* AddDibsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDibsCell.swift; sourceTree = "<group>"; };
 		9AE7AB6D243428B200159DF2 /* DibsMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DibsMapViewController.swift; sourceTree = "<group>"; };
 		9AE7AB6F24343D1500159DF2 /* DibsMapAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DibsMapAnnotation.swift; sourceTree = "<group>"; };
+		9AE7AB86243B6C9800159DF2 /* FloorPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FloorPlanViewController.swift; path = Dibs/View/FloorPlanViewController.swift; sourceTree = SOURCE_ROOT; };
+		9AE7AB88243B7CE700159DF2 /* ScrollFloorPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollFloorPlanViewController.swift; sourceTree = "<group>"; };
+		9AE7AB8A243BF0AC00159DF2 /* FloorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorCell.swift; sourceTree = "<group>"; };
 		C70A941AEB7C837C596D412E /* Pods-Dibs-DibsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dibs-DibsUITests.release.xcconfig"; path = "Target Support Files/Pods-Dibs-DibsUITests/Pods-Dibs-DibsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D393296BBD644A070306D4D8 /* Pods_Dibs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dibs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -207,6 +213,8 @@
 				9AE7AB6724327B6400159DF2 /* DibsSpotViewController.swift */,
 				9AE7AB6924328B9F00159DF2 /* DibsSpotTableViewHeader.swift */,
 				9AE7AB6D243428B200159DF2 /* DibsMapViewController.swift */,
+				9AE7AB86243B6C9800159DF2 /* FloorPlanViewController.swift */,
+				9AE7AB88243B7CE700159DF2 /* ScrollFloorPlanViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -238,6 +246,7 @@
 				9ADC9C2924145B4F0063FAF6 /* DibsCell.swift */,
 				9AE7AB6B2433BC2D00159DF2 /* AddDibsCell.swift */,
 				9AE7AB6F24343D1500159DF2 /* DibsMapAnnotation.swift */,
+				9AE7AB8A243BF0AC00159DF2 /* FloorCell.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -511,10 +520,13 @@
 				9AE7AB6E243428B200159DF2 /* DibsMapViewController.swift in Sources */,
 				9A9EDF5C2400624900C49471 /* LoginSignupViewController.swift in Sources */,
 				9A9EDF5E24086EC900C49471 /* HomeViewController.swift in Sources */,
+				9AE7AB89243B7CE700159DF2 /* ScrollFloorPlanViewController.swift in Sources */,
+				9AE7AB8B243BF0AD00159DF2 /* FloorCell.swift in Sources */,
 				9ADC9C2A24145B4F0063FAF6 /* DibsCell.swift in Sources */,
 				9A61EAFA23C4100A00D66F2E /* SceneDelegate.swift in Sources */,
 				9A61EB0223C4100A00D66F2E /* Dibs.xcdatamodeld in Sources */,
 				9A3D5A1323DA0E2A007E88E9 /* FIRDatabaseController.swift in Sources */,
+				9AE7AB87243B6C9800159DF2 /* FloorPlanViewController.swift in Sources */,
 				9A21A9C723F22F34008A9CFE /* ScannerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
