@@ -12,27 +12,10 @@ import CoreData
 
 class HomeViewController: UIViewController {
     
-    
-//    fileprivate let collectionView: UICollectionView = {
-//        let layout = UICollectionViewFlowLayout()
-//        layout.scrollDirection = .vertical
-//        layout.minimumLineSpacing = 20.0
-//        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-//        cv.translatesAutoresizingMaskIntoConstraints = false
-////        cv.register(SpotCell.self, forCellWithReuseIdentifier: "spotCell")
-//        cv.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
-//        return cv
-    //    }()
-    
-    
     @IBOutlet weak var collectionView: UICollectionView!
     
     fileprivate let refreshControl = UIRefreshControl()
     
-//    fileprivate let bannerView: UIView = {
-//        let bannerView = UIView(frame: .zero)
-//        return bannerView
-//    }()
     @IBOutlet weak var bannerView: UIView!
     
     fileprivate let colors = [UIColor.green, UIColor.yellow, UIColor.red, UIColor.green, UIColor.red, UIColor.green, UIColor.red, UIColor.green]
@@ -42,7 +25,7 @@ class HomeViewController: UIViewController {
     var spotTags: [String] = []
     var buildingNames: [NSManagedObject] = []
     
-    fileprivate var spotDict = Dictionary<String, Int>()
+    fileprivate var spotCountDict = Dictionary<String, Int>()
     var thisDibsChairList: [DibsChair] = []
     
 //    fileprivate var spotCount: Int = 0
@@ -52,15 +35,35 @@ class HomeViewController: UIViewController {
 //    @IBOutlet weak var contentView: UIView!
     
     let db = Database.database().reference()
+    typealias FirebaseClosure = (Dictionary<String, Int>?) -> Void
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        readUserDefaults()
+        readAllChairs() { dict in
+            print("Closure???")
+            if dict == nil {
+                print("nil")
+                return
+            }
+            print(dict)
+            if let thisDict = dict {
+                self.spotCountDict = thisDict
+            }
+            
+        }
+        print(self.spotCounts)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
 //        readUserPref()
 //        readAllChairs()
-        readUserDefaults()
         print("HERE ------------")
         print(self.spotTags)
+        print(self.spotCountDict)
 //        self.spotTags = ["CULC", "Klaus", "Van Leer", "Howey", "Student Center"]
         
         let layout = UICollectionViewFlowLayout()
@@ -84,7 +87,6 @@ class HomeViewController: UIViewController {
         
             
         // Do any additional setup after loading the view
-        
 //        collectionView.refreshControl?.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -40).isActive = true
         collectionView.refreshControl?.translatesAutoresizingMaskIntoConstraints = false
         // get data of how many Spots from spot class (tester + db.count + add_new_cell)
@@ -93,24 +95,13 @@ class HomeViewController: UIViewController {
 //        collectionView.reloadData()
         print("Debug")
         print(self.spotTags)
-//        db.readTest()
-//        DispatchQueue.main.async {
-//            self.db.readAllChairs()
-//        }
-//        db.readAllChairs()
-//        print(db.count)
-//        self.spotDict = db.getDictOfDibsBuildings()
-//        db.readAllChairs()
-//        self.spotDict = db.getDictOfDibsBuildings()
-//        print(self.spotDict)
     }
     
     func readUserDefaults() {
         let userDefaults = UserDefaults.standard
-        if let spotDict = userDefaults.object(forKey: "dibsSpotDict") as? Dictionary<String, Int>{
-            self.spotDict = spotDict
-            self.spotTags = Array(repeating: " ", count: self.spotDict.count)
-            for (key, val) in self.spotDict {
+        if let tagDict = userDefaults.object(forKey: "dibsSpotDict") as? Dictionary<String, Int>{
+            self.spotTags = Array(repeating: " ", count: tagDict.count)
+            for (key, val) in tagDict {
                 self.spotTags[val] = key
             }
         }
@@ -125,14 +116,14 @@ class HomeViewController: UIViewController {
         userDefaults.set(storeDict, forKey: "dibsSpotDict")
     }
     
-    func readAllChairs() {
-        var dibsChairList = [DibsChair]()
+    func readAllChairs(completionHandler:@escaping FirebaseClosure) {
         self.db.child("chair").observe(.value, with: { (snapshot) in
             // Get chair data
             guard let value = snapshot.value as? NSDictionary else {
                 print("Invalid Firebase Read")
                 return
             }
+            var dibsChairList = [DibsChair]()
             print(".")
             print(".")
             print(".")
@@ -172,35 +163,47 @@ class HomeViewController: UIViewController {
                 
             }
             self.thisDibsChairList = dibsChairList
-            self.spotDict = self.getDictOfDibsBuildings()
+            self.spotCountDict = self.getDictOfDibsBuildings()
+            
             print(".")
             print(".")
             print(".")
             
-            if dibsChairList.isEmpty {
-                print("No change in data")
-            } else {
+//            if dibsChairList.isEmpty {
+//                print("No change in data")
+//            } else {
+//                self.collectionView.reloadData()
+//            }
+            DispatchQueue.main.async() {
+                if self.spotCountDict.isEmpty {
+                    completionHandler(nil)
+                } else {
+                    completionHandler(self.spotCountDict)
+                }
                 self.collectionView.reloadData()
             }
-//            print(dibsChairList)
-//            self.thisDibsChairList = dibsChairList
-//            self.validRead = true
             
         }) { (error) in
             print("readAllChairs error")
             print(error.localizedDescription)
         }
-        print("Here")
-        print(dibsChairList)
-        print(self.thisDibsChairList)
+        print("No Firebase Exec")
     }
+    
+//    func completionHandler(dict: Dictionary<String, Int>) {
+//        print("Firebase Read Complete")
+//        self.collectionView.reloadData()
+//    }
         
     func getDictOfDibsBuildings() -> Dictionary<String, Int> {
         
+        print("Building Dict")
         var buildingDict = Dictionary<String, Int>()
         
         for chair in self.thisDibsChairList {
-            buildingDict[chair.building, default: 0] += 1
+            if chair.status == "0" {
+                buildingDict[chair.building, default: 0] += 1
+            }
         }
         print(buildingDict)
         return buildingDict
@@ -209,9 +212,17 @@ class HomeViewController: UIViewController {
     @objc
     private func didPullToRefresh(_ sender:Any) {
         print("Refresh Data")
-        print(self.spotDict)
-
-        
+        readAllChairs() { dict in
+            print("Closure???")
+            if dict == nil {
+                print("nil")
+                return
+            }
+            if let thisDict = dict {
+                print(thisDict)
+                self.spotCountDict = thisDict
+            }
+        }
         refreshControl.endRefreshing()
     }
     
@@ -264,9 +275,14 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
             label.text = self.spotTags[indexPath.row]
         }
         if let countLabel = cell.spotCountLabel {
-            countLabel.text = self.spotCounts[indexPath.row]
+//            countLabel.text = self.spotCounts[indexPath.row]
+            countLabel.text = "--"
+            for (key, val) in self.spotCountDict {
+                if key == self.spotTags[indexPath.row] {
+                    countLabel.text = String(val)
+                }
+            }
         }
-        print(cell.locationLabel.text)
         return cell
     }
     
@@ -356,8 +372,8 @@ extension HomeViewController: UICollectionViewDragDelegate, UICollectionViewDrop
                 if let arr = item.dragItem.localObject as? [NSString] {
                     self.spotTags.remove(at: sourceIndexPath.item)
                     self.spotTags.insert(arr[0] as String, at: destinationIndexPath.item)
-                    self.spotCounts.remove(at: sourceIndexPath.item)
-                    self.spotCounts.insert(arr[1] as String, at: destinationIndexPath.item)
+//                    self.spotCounts.remove(at: sourceIndexPath.item)
+//                    self.spotCounts.insert(arr[1] as String, at: destinationIndexPath.item)
                     collectionView.deleteItems(at: [sourceIndexPath])
                     collectionView.insertItems(at: [destinationIndexPath])
                     
