@@ -403,6 +403,18 @@ or Sign Up</string>
                                                         <constraint firstAttribute="width" secondItem="QOF-MZ-tNw" secondAttribute="height" multiplier="1:1" id="rIX-r2-Opd"/>
                                                     </constraints>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jps-T3-4vV">
+                                                    <rect key="frame" x="155" y="155" width="25" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="25" id="LuH-E3-xe0"/>
+                                                        <constraint firstAttribute="width" secondItem="Jps-T3-4vV" secondAttribute="height" multiplier="1:1" id="pqw-nW-dFc"/>
+                                                    </constraints>
+                                                    <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" image="trash" catalog="system"/>
+                                                    <connections>
+                                                        <action selector="deleteButtonTapped:" destination="pbv-vK-8Z2" eventType="touchUpInside" id="oTl-On-cmE"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="TAR-Fa-ZGN" secondAttribute="trailing" constant="10" id="0yN-0P-zrK"/>
@@ -412,6 +424,7 @@ or Sign Up</string>
                                                 <constraint firstItem="QOF-MZ-tNw" firstAttribute="top" secondItem="hPI-x0-LBg" secondAttribute="bottom" constant="5" id="C3w-PE-8jq"/>
                                                 <constraint firstItem="J72-Se-cCT" firstAttribute="leading" secondItem="hFi-C1-APh" secondAttribute="leading" constant="10" id="E9h-Sp-ZGc"/>
                                                 <constraint firstItem="N7i-b6-b4n" firstAttribute="leading" secondItem="hFi-C1-APh" secondAttribute="leading" constant="10" id="SDa-nf-JqI"/>
+                                                <constraint firstAttribute="bottom" secondItem="Jps-T3-4vV" secondAttribute="bottom" constant="10" id="W8i-ya-hIj"/>
                                                 <constraint firstItem="d6C-bN-eWT" firstAttribute="width" secondItem="hFi-C1-APh" secondAttribute="width" multiplier="0.821053" id="ZTz-3e-ulT"/>
                                                 <constraint firstItem="QOF-MZ-tNw" firstAttribute="height" secondItem="hPI-x0-LBg" secondAttribute="height" id="bH4-YZ-dFW"/>
                                                 <constraint firstItem="d6C-bN-eWT" firstAttribute="centerY" secondItem="hFi-C1-APh" secondAttribute="centerY" id="bTX-E1-3wy"/>
@@ -419,6 +432,7 @@ or Sign Up</string>
                                                 <constraint firstItem="J72-Se-cCT" firstAttribute="width" secondItem="hFi-C1-APh" secondAttribute="width" multiplier="0.75" id="lU2-1f-dZV"/>
                                                 <constraint firstItem="QOF-MZ-tNw" firstAttribute="centerX" secondItem="hPI-x0-LBg" secondAttribute="centerX" id="mhw-YS-q3n"/>
                                                 <constraint firstItem="TAR-Fa-ZGN" firstAttribute="top" secondItem="hFi-C1-APh" secondAttribute="top" constant="10" id="og7-T0-RjJ"/>
+                                                <constraint firstAttribute="trailing" secondItem="Jps-T3-4vV" secondAttribute="trailing" constant="10" id="oyv-hh-ywO"/>
                                                 <constraint firstItem="hPI-x0-LBg" firstAttribute="centerX" secondItem="TAR-Fa-ZGN" secondAttribute="centerX" id="rEz-Hm-LcP"/>
                                                 <constraint firstItem="QOF-MZ-tNw" firstAttribute="width" secondItem="QOF-MZ-tNw" secondAttribute="height" multiplier="1:1" id="ugy-ys-no5"/>
                                                 <constraint firstItem="d6C-bN-eWT" firstAttribute="leading" secondItem="hFi-C1-APh" secondAttribute="leading" constant="8" id="w5Q-gJ-089"/>
@@ -427,6 +441,7 @@ or Sign Up</string>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="190" height="190"/>
                                         <connections>
+                                            <outlet property="deleteButton" destination="Jps-T3-4vV" id="o7l-ts-wwW"/>
                                             <outlet property="locationLabel" destination="J72-Se-cCT" id="Qvk-gO-iGK"/>
                                             <outlet property="spotCountLabel" destination="d6C-bN-eWT" id="qtl-93-ERm"/>
                                         </connections>
@@ -982,6 +997,7 @@ or Sign Up</string>
         <image name="person.circle" catalog="system" width="64" height="60"/>
         <image name="plus" catalog="system" width="64" height="56"/>
         <image name="star" catalog="system" width="64" height="58"/>
+        <image name="trash" catalog="system" width="60" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="2fh-LD-SRg"/>

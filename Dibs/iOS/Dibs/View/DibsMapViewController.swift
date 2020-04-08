@@ -19,10 +19,14 @@ class DibsMapViewController: UIViewController {
     let StudentCenterCoord = CLLocationCoordinate2DMake(33.774149, -84.398818)
     let BoggsCoord = CLLocationCoordinate2DMake(33.775656, -84.399821)
     
+    var homeViewController: HomeViewController?
+    
     let locationManager = CLLocationManager()
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var mapView: MKMapView!
+    
+    var spotTags: [String] = []
     
     
     override func viewDidLoad() {
@@ -73,6 +77,24 @@ class DibsMapViewController: UIViewController {
         
     }
     
+    func updateUserDefaults(buildingName: String) {
+        // read current
+        let userDefaults = UserDefaults.standard
+        if let tagDict = userDefaults.object(forKey: "dibsSpotDict") as? Dictionary<String, Int>{
+            for (key, val) in tagDict {
+                spotTags[val] = key
+            }
+            self.spotTags.append(buildingName)
+            // write
+            var storeDict: Dictionary<String, Int> = [:]
+            for (i, tag) in self.spotTags.enumerated() {
+                storeDict[tag] = i
+            }
+            print(storeDict)
+            userDefaults.set(storeDict, forKey: "dibsSpotDict")
+        }
+    }
+    
 
     /*
     // MARK: - Navigation
@@ -102,8 +124,16 @@ extension DibsMapViewController: MKMapViewDelegate {
             view.calloutOffset = CGPoint(x: -5, y: 5)
             // custom button
             let calloutButton = UIButton(type: .contactAdd)
-            calloutButton.setImage(UIImage(systemName: "plus"), for: .normal)
-            calloutButton.tintColor = #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)
+            let alreadyHasBuilding = self.spotTags.contains {$0 == annotation.title}
+            if (!alreadyHasBuilding) {
+                calloutButton.setImage(UIImage(systemName: "plus"), for: .normal)
+                calloutButton.isUserInteractionEnabled = true
+                calloutButton.tintColor = #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)
+            } else {
+                calloutButton.setImage(UIImage(systemName: "plus"), for: .normal)
+                calloutButton.isUserInteractionEnabled = false
+                calloutButton.tintColor = UIColor.lightGray
+            }
             view.rightCalloutAccessoryView = calloutButton
         }
         view.markerTintColor = #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)
@@ -117,9 +147,14 @@ extension DibsMapViewController: MKMapViewDelegate {
 //        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
 //        location.mapItem().openInMaps(launchOptions: launchOptions)
         let dibsMapAnnotation = view.annotation as! DibsMapAnnotation
-        if let buildingNAmeTitle = dibsMapAnnotation.title {
+        if let buildingNameTitle = dibsMapAnnotation.title {
             // add to VC
-            
+            print("Map Tapped \(buildingNameTitle)")
+            let alreadyHasBuilding = self.spotTags.contains {$0 == buildingNameTitle}
+            if (!alreadyHasBuilding) {
+                self.updateUserDefaults(buildingName: buildingNameTitle)
+                self.homeViewController?.mapCallback()
+            }
         }
     }
 }

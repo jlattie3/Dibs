@@ -13,8 +13,10 @@ class DibsCell: UICollectionViewCell {
     
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var spotCountLabel: UILabel!
+    @IBOutlet weak var deleteButton: UIButton!
     
-//    var spotsArray: [DibsChair]
+    // buttonTappedCallback
+    var deleteTapped : (()->())?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,6 +29,9 @@ class DibsCell: UICollectionViewCell {
     }
     
     func sharedInit() {
+        
+        
+//        deleteButton.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
 //        self.contentView.layer.borderColor = UIColor.lightGray.cgColor
 //        self.contentView.layer.borderWidth = 1.0
     
@@ -59,6 +64,16 @@ class DibsCell: UICollectionViewCell {
         
         
     }
+    
+    
+    @IBAction func deleteButtonTapped(_ sender: Any) {
+        deleteTapped?()
+    }
+    
+//    @objc func deleteButtonTapped() {
+//        print("Delete DibsSpot")
+//        deleteTapped?()
+//    }
     
     
 }

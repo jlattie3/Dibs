@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let userDefaults = UserDefaults.standard
         if let userDict = userDefaults.object(forKey: "dibsSpotDict") {
             print("Found Defaults!")
-            print(userDict)
+//            print(userDict)
         } else {
             print("No defaults set yet!")
             let defaultDict = ["CULC" : 0,

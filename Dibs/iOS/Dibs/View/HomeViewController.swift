@@ -226,6 +226,12 @@ class HomeViewController: UIViewController {
         refreshControl.endRefreshing()
     }
     
+    func mapCallback() {
+        print("Mapp Add Callback")
+        self.readUserDefaults()
+        self.collectionView.reloadData()
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -271,6 +277,41 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dibsCell", for: indexPath) as! DibsCell
         print(cell)
+        
+        cell.deleteTapped = { () in
+            if let str = cell.locationLabel.text {
+                if let ind = self.spotTags.firstIndex(of: str) {
+                    print("Delete Tapped \(str)")
+                    print(self.collectionView.numberOfItems(inSection: 0))
+                    print(indexPath)
+                    print(ind)
+                    print(self.spotTags)
+                    self.spotTags.remove(at: ind)
+                    self.collectionView.deleteItems(at: [IndexPath(item: ind, section: 0)])
+                }
+            }
+            
+//            print("Delete Tapped \(cell.locationLabel.text)")
+//            print(self.collectionView.numberOfItems(inSection: 0))
+//            print(indexPath)
+//            print(indexPath.row)
+//            print(self.spotTags)
+//            self.spotTags.remove(at: indexPath.row)
+////            if let str = cell.locationLabel.text {
+////                if let index = self.spotTags.firstIndex(of: str) {
+////                    self.spotTags.remove(at: index)
+////                }
+////            }
+//            print(self.spotTags)
+////            self.collectionView.deleteItems(at: [indexPath])
+//            self.collectionView.reloadData()
+//            print(self.collectionView.numberOfItems(inSection: 0))
+            
+            self.storeUserDefaults()
+            return
+        }
+        
+        
         if let label = cell.locationLabel {
             label.text = self.spotTags[indexPath.row]
         }
@@ -292,7 +333,9 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
             print("Add Cell Tapped")
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
             let dibsMapViewController = storyBoard.instantiateViewController(withIdentifier: "dibsMapViewController") as! DibsMapViewController
+            dibsMapViewController.spotTags = self.spotTags
             self.present(dibsMapViewController, animated:true, completion:nil)
+            dibsMapViewController.homeViewController = self
         } else {
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
             let dibsSpotViewController = storyBoard.instantiateViewController(withIdentifier: "dibsSpotViewController") as! DibsSpotViewController
@@ -383,6 +426,7 @@ extension HomeViewController: UICollectionViewDragDelegate, UICollectionViewDrop
             }, completion: nil)
             
             coordinator.drop(item.dragItem, toItemAt: destinationIndexPath)
+//            self.collectionView.reloadData()
         }
     }
     
