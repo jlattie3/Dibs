@@ -14,9 +14,19 @@ class DibsCell: UICollectionViewCell {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var spotCountLabel: UILabel!
     @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet weak var notificationButton: UIButton!
+    @IBOutlet weak var locationButton: UIButton!
     
-    // buttonTappedCallback
+    // Callbacks
     var deleteTapped : (()->())?
+    var favoriteTapped : (()->())?
+    var notificationTapped : (()->())?
+    var locationTapped : (()->())?
+    
+    // class properties
+    var favoriteStatus: Bool = false
+    var notifStatus: Bool = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -69,6 +79,19 @@ class DibsCell: UICollectionViewCell {
     @IBAction func deleteButtonTapped(_ sender: Any) {
         deleteTapped?()
     }
+    
+    @IBAction func favoriteButtonTapped(_ sender: Any) {
+        favoriteTapped?()
+    }
+    
+    @IBAction func notificationButtonTapped(_ sender: Any) {
+        notificationTapped?()
+    }
+    
+    @IBAction func locationButtonTapped(_ sender: Any) {
+        locationTapped?()
+    }
+    
     
 //    @objc func deleteButtonTapped() {
 //        print("Delete DibsSpot")

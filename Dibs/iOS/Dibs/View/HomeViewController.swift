@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import CoreData
+import MapKit
 
 class HomeViewController: UIViewController {
     
@@ -209,6 +210,22 @@ class HomeViewController: UIViewController {
         return buildingDict
     }
     
+    func pushCellToFront(sourceIndex: Int) {
+        print(sourceIndex)
+        let itemToInsert = self.spotTags[sourceIndex] as String
+        self.spotTags.remove(at: sourceIndex)
+        self.spotTags.insert(itemToInsert, at: 0)
+
+        self.collectionView.deleteItems(at: [IndexPath(row: sourceIndex, section: 0)])
+        self.collectionView.insertItems(at: [IndexPath(row: 0, section: 0)])
+        
+        self.storeUserDefaults()
+    }
+    
+    func pushCellToBack() {
+        
+    }
+    
     @objc
     private func didPullToRefresh(_ sender:Any) {
         print("Refresh Data")
@@ -230,6 +247,33 @@ class HomeViewController: UIViewController {
         print("Mapp Add Callback")
         self.readUserDefaults()
         self.collectionView.reloadData()
+    }
+    
+    func getCoordOfForLocationButton(locationName: String) -> CLLocationCoordinate2D {
+        let GeorgiaTechCoord = CLLocationCoordinate2DMake(33.776575, -84.398287)
+        let CulcCoord = CLLocationCoordinate2DMake(33.774621, -84.396367)
+        let VanLeerCoord = CLLocationCoordinate2DMake(33.775964, -84.397134)
+        let KlausCoord = CLLocationCoordinate2DMake(33.777168, -84.396211)
+        let HoweyCoord = CLLocationCoordinate2DMake(33.77744, -84.398678)
+        let StudentCenterCoord = CLLocationCoordinate2DMake(33.774149, -84.398818)
+        let BoggsCoord = CLLocationCoordinate2DMake(33.775656, -84.399821)
+        
+        switch locationName {
+        case "CULC":
+            return CulcCoord
+        case "Van Leer":
+            return VanLeerCoord
+        case "Klaus":
+            return KlausCoord
+        case "Howey":
+            return HoweyCoord
+        case "Student Center":
+            return StudentCenterCoord
+        case "Boggs":
+            return BoggsCoord
+        default:
+            return GeorgiaTechCoord
+        }
     }
     
     /*
@@ -290,25 +334,67 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
                     self.collectionView.deleteItems(at: [IndexPath(item: ind, section: 0)])
                 }
             }
-            
-//            print("Delete Tapped \(cell.locationLabel.text)")
-//            print(self.collectionView.numberOfItems(inSection: 0))
-//            print(indexPath)
-//            print(indexPath.row)
-//            print(self.spotTags)
-//            self.spotTags.remove(at: indexPath.row)
-////            if let str = cell.locationLabel.text {
-////                if let index = self.spotTags.firstIndex(of: str) {
-////                    self.spotTags.remove(at: index)
-////                }
-////            }
-//            print(self.spotTags)
-////            self.collectionView.deleteItems(at: [indexPath])
-//            self.collectionView.reloadData()
-//            print(self.collectionView.numberOfItems(inSection: 0))
-            
             self.storeUserDefaults()
             return
+        }
+        
+        cell.favoriteTapped = { () in
+            if let favButton = cell.favoriteButton {
+                let newStatus = !cell.favoriteStatus
+                if (newStatus) {
+                    favButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+                    if let str = cell.locationLabel.text {
+                        if let ind = self.spotTags.firstIndex(of: str) {
+                            self.pushCellToFront(sourceIndex: ind)
+                        }
+                    }
+                } else {
+                    favButton.setImage(UIImage(systemName: "star"), for: .normal)
+                    self.pushCellToBack()
+                }
+                favButton.imageView?.tintColor = .systemYellow
+                cell.favoriteStatus = newStatus
+                self.collectionView.reloadData()
+            }
+            return
+        }
+        
+        cell.notificationTapped = { () in
+            if let notifButton = cell.notificationButton {
+                let newStatus = !cell.notifStatus
+                if (newStatus) {
+                    notifButton.setImage(UIImage(systemName: "bell.fill"), for: .normal)
+                    if let str = cell.locationLabel.text {
+                        let alert = UIAlertController(title: "Call Dibs", message: "Would you like to receive open spot notifications for \(str)?", preferredStyle: UIAlertController.Style.alert)
+                        // add the actions (buttons)
+                        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default, handler: { (alert: UIAlertAction!) in
+                            cell.notifStatus = newStatus
+                        }))
+                        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: { (alert: UIAlertAction!) in
+                            notifButton.setImage(UIImage(systemName: "bell"), for: .normal)
+                        }))
+                        // show the alert
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                } else {
+                    notifButton.setImage(UIImage(systemName: "bell"), for: .normal)
+                    cell.notifStatus = newStatus
+                }
+//                notifButton.imageView?.tintColor = .
+//                self.collectionView.reloadData()
+            }
+            return
+        }
+        
+        cell.locationTapped = { () in
+            if let str = cell.locationLabel.text {
+                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                let dibsMapViewController = storyBoard.instantiateViewController(withIdentifier: "dibsMapViewController") as! DibsMapViewController
+                dibsMapViewController.spotTags = self.spotTags
+                dibsMapViewController.initCoord = self.getCoordOfForLocationButton(locationName: str)
+                dibsMapViewController.homeViewController = self
+                self.present(dibsMapViewController, animated:true, completion:nil)
+            }
         }
         
         

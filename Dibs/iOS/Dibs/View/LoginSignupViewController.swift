@@ -41,7 +41,10 @@ class LoginSignupViewController: UIViewController, UITextFieldDelegate {
     @IBAction func signUpButtonTapped(_ sender: Any) {
         Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { authResult, error in
           // ...
-            print(authResult)
+//            print(authResult)
+            if authResult != nil {
+                self.performSegue(withIdentifier: "validSignUp", sender: nil)
+            }
         }
     }
     
@@ -49,7 +52,10 @@ class LoginSignupViewController: UIViewController, UITextFieldDelegate {
         Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { [weak self] authResult, error in
           guard let strongSelf = self else { return }
           // ...
-            print(authResult)
+//            print(authResult)
+            if authResult != nil {
+                strongSelf.performSegue(withIdentifier: "validLogIn", sender: nil)
+            }
         }
     }
     

@@ -19,6 +19,8 @@ class DibsMapViewController: UIViewController {
     let StudentCenterCoord = CLLocationCoordinate2DMake(33.774149, -84.398818)
     let BoggsCoord = CLLocationCoordinate2DMake(33.775656, -84.399821)
     
+    var initCoord: CLLocationCoordinate2D = CLLocationCoordinate2DMake(33.776575, -84.398287)
+    
     var homeViewController: HomeViewController?
     
     let locationManager = CLLocationManager()
@@ -41,9 +43,9 @@ class DibsMapViewController: UIViewController {
         
         mapView.delegate = self
         
-        // center initial view at GT Campus
+        // center initial view at GT Campus or DibsCell
         let regionRadius: CLLocationDistance = 750
-        let coordinateRegion = MKCoordinateRegion(center: GeorgiaTechCoord,
+        let coordinateRegion = MKCoordinateRegion(center: self.initCoord,
                                                   latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
         
         let when = DispatchTime.now() + 0.5

@@ -199,13 +199,14 @@
                                 <rect key="frame" x="31" y="715" width="352" height="63"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                <state key="normal" title="Login">
+                                <state key="normal" title="Log In">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                                 <connections>
                                     <action selector="loginButtonTapped:" destination="r1s-Bo-YUV" eventType="touchUpInside" id="ZnK-SB-u00"/>
                                     <action selector="loginButtonTapped:" destination="pAb-T0-C7W" eventType="touchUpInside" id="avU-ct-ZXC"/>
                                     <action selector="loginButtonTapped:" destination="6Vg-Px-q5o" eventType="touchUpInside" id="biF-et-WIF"/>
+                                    <segue destination="pIG-Rp-soy" kind="presentation" identifier="validLogIn" modalPresentationStyle="fullScreen" id="n0r-0E-sPI"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r9t-GD-0bn">
@@ -219,12 +220,13 @@
                                     <action selector="loginButtonTapped:" destination="pAb-T0-C7W" eventType="touchUpInside" id="IWF-1a-w0R"/>
                                     <action selector="signUpButtonTapped:" destination="r1s-Bo-YUV" eventType="touchUpInside" id="gJB-ij-RKD"/>
                                     <action selector="signUpButtonTapped:" destination="6Vg-Px-q5o" eventType="touchUpInside" id="xEG-FK-bvN"/>
+                                    <segue destination="pIG-Rp-soy" kind="presentation" identifier="validSignUp" modalPresentationStyle="fullScreen" id="tyB-Oc-xzx"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vU1-Ov-qxH">
                                 <rect key="frame" x="52" y="387" width="310.5" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" textContentType="password"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NR7-xf-fgL">
                                 <rect key="frame" x="52" y="313" width="310.5" height="34"/>
@@ -245,7 +247,7 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TdN-xo-zdy">
                                 <rect key="frame" x="52" y="40" width="310.5" height="72"/>
-                                <string key="text">Login to your account
+                                <string key="text">Log in to your account
 or Sign Up</string>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                 <nil key="textColor"/>
@@ -380,29 +382,6 @@ or Sign Up</string>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="TAR-Fa-ZGN">
-                                                    <rect key="frame" x="155" y="10" width="25" height="25"/>
-                                                    <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="25" id="ETw-lD-NM4"/>
-                                                        <constraint firstAttribute="width" secondItem="TAR-Fa-ZGN" secondAttribute="height" multiplier="1:1" id="xBc-1Y-dCu"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bell" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="hPI-x0-LBg">
-                                                    <rect key="frame" x="155" y="40" width="25" height="24.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="hPI-x0-LBg" secondAttribute="height" multiplier="1:1" id="H3C-SZ-9zO"/>
-                                                        <constraint firstAttribute="height" constant="25" id="grf-ds-dCT"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="QOF-MZ-tNw">
-                                                    <rect key="frame" x="155" y="70.5" width="25" height="24"/>
-                                                    <color key="tintColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="25" id="VkE-qG-2So"/>
-                                                        <constraint firstAttribute="width" secondItem="QOF-MZ-tNw" secondAttribute="height" multiplier="1:1" id="rIX-r2-Opd"/>
-                                                    </constraints>
-                                                </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jps-T3-4vV">
                                                     <rect key="frame" x="155" y="155" width="25" height="25"/>
                                                     <constraints>
@@ -415,34 +394,70 @@ or Sign Up</string>
                                                         <action selector="deleteButtonTapped:" destination="pbv-vK-8Z2" eventType="touchUpInside" id="oTl-On-cmE"/>
                                                     </connections>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T5a-BS-Rk5">
+                                                    <rect key="frame" x="155" y="10" width="25" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="T5a-BS-Rk5" secondAttribute="height" multiplier="1:1" id="TVg-OA-wAv"/>
+                                                        <constraint firstAttribute="width" constant="25" id="WHY-gO-PqP"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" image="star" catalog="system"/>
+                                                    <connections>
+                                                        <action selector="favoriteButtonTapped:" destination="pbv-vK-8Z2" eventType="touchUpInside" id="cR4-Kn-gPn"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1WJ-8i-lhC">
+                                                    <rect key="frame" x="155" y="40" width="25" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="25" id="Cy3-Au-fVz"/>
+                                                        <constraint firstAttribute="width" secondItem="1WJ-8i-lhC" secondAttribute="height" multiplier="1:1" id="zGk-kV-nAF"/>
+                                                    </constraints>
+                                                    <state key="normal" image="bell" catalog="system"/>
+                                                    <connections>
+                                                        <action selector="notificationButtonTapped:" destination="pbv-vK-8Z2" eventType="touchUpInside" id="doz-SZ-b8p"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g1s-p0-bhk">
+                                                    <rect key="frame" x="155" y="70" width="25" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="25" id="Www-1H-T6H"/>
+                                                        <constraint firstAttribute="width" secondItem="g1s-p0-bhk" secondAttribute="height" multiplier="1:1" id="cVJ-cQ-yGu"/>
+                                                    </constraints>
+                                                    <color key="tintColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" image="location" catalog="system"/>
+                                                    <connections>
+                                                        <action selector="locationButtonTapped:" destination="pbv-vK-8Z2" eventType="touchUpInside" id="nS3-sK-dcR"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="TAR-Fa-ZGN" secondAttribute="trailing" constant="10" id="0yN-0P-zrK"/>
                                                 <constraint firstItem="N7i-b6-b4n" firstAttribute="width" secondItem="hFi-C1-APh" secondAttribute="width" multiplier="0.75" id="1WF-W1-cxc"/>
                                                 <constraint firstItem="J72-Se-cCT" firstAttribute="top" secondItem="hFi-C1-APh" secondAttribute="top" constant="10" id="2Ci-OL-rNM"/>
-                                                <constraint firstItem="QOF-MZ-tNw" firstAttribute="width" secondItem="hPI-x0-LBg" secondAttribute="width" id="7SH-V1-HqL"/>
-                                                <constraint firstItem="QOF-MZ-tNw" firstAttribute="top" secondItem="hPI-x0-LBg" secondAttribute="bottom" constant="5" id="C3w-PE-8jq"/>
+                                                <constraint firstItem="1WJ-8i-lhC" firstAttribute="top" secondItem="T5a-BS-Rk5" secondAttribute="bottom" constant="5" id="7BK-Ui-TBK"/>
                                                 <constraint firstItem="J72-Se-cCT" firstAttribute="leading" secondItem="hFi-C1-APh" secondAttribute="leading" constant="10" id="E9h-Sp-ZGc"/>
+                                                <constraint firstItem="1WJ-8i-lhC" firstAttribute="centerX" secondItem="T5a-BS-Rk5" secondAttribute="centerX" id="ErW-Rj-iyP"/>
                                                 <constraint firstItem="N7i-b6-b4n" firstAttribute="leading" secondItem="hFi-C1-APh" secondAttribute="leading" constant="10" id="SDa-nf-JqI"/>
                                                 <constraint firstAttribute="bottom" secondItem="Jps-T3-4vV" secondAttribute="bottom" constant="10" id="W8i-ya-hIj"/>
                                                 <constraint firstItem="d6C-bN-eWT" firstAttribute="width" secondItem="hFi-C1-APh" secondAttribute="width" multiplier="0.821053" id="ZTz-3e-ulT"/>
-                                                <constraint firstItem="QOF-MZ-tNw" firstAttribute="height" secondItem="hPI-x0-LBg" secondAttribute="height" id="bH4-YZ-dFW"/>
+                                                <constraint firstAttribute="trailing" secondItem="T5a-BS-Rk5" secondAttribute="trailing" constant="10" id="ZYA-pA-25f"/>
                                                 <constraint firstItem="d6C-bN-eWT" firstAttribute="centerY" secondItem="hFi-C1-APh" secondAttribute="centerY" id="bTX-E1-3wy"/>
                                                 <constraint firstItem="N7i-b6-b4n" firstAttribute="top" secondItem="d6C-bN-eWT" secondAttribute="bottom" id="iBN-LR-wsZ"/>
+                                                <constraint firstItem="g1s-p0-bhk" firstAttribute="centerX" secondItem="1WJ-8i-lhC" secondAttribute="centerX" id="jMC-Ui-Pla"/>
                                                 <constraint firstItem="J72-Se-cCT" firstAttribute="width" secondItem="hFi-C1-APh" secondAttribute="width" multiplier="0.75" id="lU2-1f-dZV"/>
-                                                <constraint firstItem="QOF-MZ-tNw" firstAttribute="centerX" secondItem="hPI-x0-LBg" secondAttribute="centerX" id="mhw-YS-q3n"/>
-                                                <constraint firstItem="TAR-Fa-ZGN" firstAttribute="top" secondItem="hFi-C1-APh" secondAttribute="top" constant="10" id="og7-T0-RjJ"/>
                                                 <constraint firstAttribute="trailing" secondItem="Jps-T3-4vV" secondAttribute="trailing" constant="10" id="oyv-hh-ywO"/>
-                                                <constraint firstItem="hPI-x0-LBg" firstAttribute="centerX" secondItem="TAR-Fa-ZGN" secondAttribute="centerX" id="rEz-Hm-LcP"/>
-                                                <constraint firstItem="QOF-MZ-tNw" firstAttribute="width" secondItem="QOF-MZ-tNw" secondAttribute="height" multiplier="1:1" id="ugy-ys-no5"/>
                                                 <constraint firstItem="d6C-bN-eWT" firstAttribute="leading" secondItem="hFi-C1-APh" secondAttribute="leading" constant="8" id="w5Q-gJ-089"/>
-                                                <constraint firstItem="hPI-x0-LBg" firstAttribute="top" secondItem="TAR-Fa-ZGN" secondAttribute="bottom" constant="5" id="yTE-m7-o9D"/>
+                                                <constraint firstItem="g1s-p0-bhk" firstAttribute="top" secondItem="1WJ-8i-lhC" secondAttribute="bottom" constant="5" id="xHE-fX-3fG"/>
+                                                <constraint firstItem="T5a-BS-Rk5" firstAttribute="top" secondItem="hFi-C1-APh" secondAttribute="top" constant="10" id="y33-kJ-w8C"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="190" height="190"/>
                                         <connections>
                                             <outlet property="deleteButton" destination="Jps-T3-4vV" id="o7l-ts-wwW"/>
+                                            <outlet property="favoriteButton" destination="T5a-BS-Rk5" id="7Co-nF-w5q"/>
+                                            <outlet property="locationButton" destination="g1s-p0-bhk" id="hZd-Q0-DZw"/>
                                             <outlet property="locationLabel" destination="J72-Se-cCT" id="Qvk-gO-iGK"/>
+                                            <outlet property="notificationButton" destination="1WJ-8i-lhC" id="dnr-dZ-cDc"/>
                                             <outlet property="spotCountLabel" destination="d6C-bN-eWT" id="qtl-93-ERm"/>
                                         </connections>
                                     </collectionViewCell>
@@ -493,7 +508,7 @@ or Sign Up</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uYx-q7-ORK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1108.6956521739132" y="77.678571428571431"/>
+            <point key="canvasLocation" x="1284" y="77"/>
         </scene>
         <!--Dibs Spot View Controller-->
         <scene sceneID="1vs-St-u2M">
@@ -748,7 +763,7 @@ or Sign Up</string>
                                 <rect key="frame" x="0.0" y="44" width="414" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gFp-fr-jxa">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="mutedStandard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gFp-fr-jxa">
                                 <rect key="frame" x="0.0" y="100" width="414" height="776"/>
                             </mapView>
                         </subviews>
@@ -1001,5 +1016,6 @@ or Sign Up</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="2fh-LD-SRg"/>
+        <segue reference="n0r-0E-sPI"/>
     </inferredMetricsTieBreakers>
 </document>
