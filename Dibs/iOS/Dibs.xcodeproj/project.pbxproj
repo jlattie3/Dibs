@@ -24,6 +24,7 @@
 		9A61EB0723C4100F00D66F2E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A61EB0523C4100F00D66F2E /* LaunchScreen.storyboard */; };
 		9A61EB1223C4100F00D66F2E /* DibsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A61EB1123C4100F00D66F2E /* DibsTests.swift */; };
 		9A61EB1D23C4100F00D66F2E /* DibsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A61EB1C23C4100F00D66F2E /* DibsUITests.swift */; };
+		9A86813B24461DA1008B17DB /* UserAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A86813A24461DA1008B17DB /* UserAccountViewController.swift */; };
 		9A9EDF5C2400624900C49471 /* LoginSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9EDF5B2400624900C49471 /* LoginSignupViewController.swift */; };
 		9A9EDF5E24086EC900C49471 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9EDF5D24086EC900C49471 /* HomeViewController.swift */; };
 		9ACEAED923F204CF00666CED /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ACEAED823F204CE00666CED /* IntroViewController.swift */; };
@@ -86,6 +87,7 @@
 		9A61EB1823C4100F00D66F2E /* DibsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DibsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A61EB1C23C4100F00D66F2E /* DibsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DibsUITests.swift; sourceTree = "<group>"; };
 		9A61EB1E23C4100F00D66F2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9A86813A24461DA1008B17DB /* UserAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountViewController.swift; sourceTree = "<group>"; };
 		9A9EDF5B2400624900C49471 /* LoginSignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSignupViewController.swift; sourceTree = "<group>"; };
 		9A9EDF5D24086EC900C49471 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		9ACEAED723F0815B00666CED /* Dibs.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Dibs.entitlements; sourceTree = "<group>"; };
@@ -207,12 +209,13 @@
 		9A998CFC242D24B800FE0650 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9ACEAED823F204CE00666CED /* IntroViewController.swift */,
 				9A9EDF5B2400624900C49471 /* LoginSignupViewController.swift */,
 				9A9EDF5D24086EC900C49471 /* HomeViewController.swift */,
-				9ACEAED823F204CE00666CED /* IntroViewController.swift */,
 				9AE7AB6724327B6400159DF2 /* DibsSpotViewController.swift */,
 				9AE7AB6924328B9F00159DF2 /* DibsSpotTableViewHeader.swift */,
 				9AE7AB6D243428B200159DF2 /* DibsMapViewController.swift */,
+				9A86813A24461DA1008B17DB /* UserAccountViewController.swift */,
 				9AE7AB86243B6C9800159DF2 /* FloorPlanViewController.swift */,
 				9AE7AB88243B7CE700159DF2 /* ScrollFloorPlanViewController.swift */,
 			);
@@ -510,6 +513,7 @@
 				9AE7AB6824327B6400159DF2 /* DibsSpotViewController.swift in Sources */,
 				9ADC9C2E2417E22E0063FAF6 /* DibsChair.swift in Sources */,
 				9A3D5A2023E0F7E9007E88E9 /* LoginViewController.swift in Sources */,
+				9A86813B24461DA1008B17DB /* UserAccountViewController.swift in Sources */,
 				9A61EAFC23C4100A00D66F2E /* ViewController.swift in Sources */,
 				9ACEAED923F204CF00666CED /* IntroViewController.swift in Sources */,
 				9AE7AB6A24328B9F00159DF2 /* DibsSpotTableViewHeader.swift in Sources */,

@@ -425,6 +425,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         } else {
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
             let dibsSpotViewController = storyBoard.instantiateViewController(withIdentifier: "dibsSpotViewController") as! DibsSpotViewController
+            dibsSpotViewController.spotName = self.spotTags[indexPath.row]
             self.present(dibsSpotViewController, animated:true, completion:nil)
         }
     }

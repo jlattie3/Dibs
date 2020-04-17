@@ -44,7 +44,7 @@ class DibsMapViewController: UIViewController {
         mapView.delegate = self
         
         // center initial view at GT Campus or DibsCell
-        let regionRadius: CLLocationDistance = 750
+        let regionRadius: CLLocationDistance = 400
         let coordinateRegion = MKCoordinateRegion(center: self.initCoord,
                                                   latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
         

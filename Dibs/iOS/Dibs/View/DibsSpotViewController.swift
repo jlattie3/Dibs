@@ -13,6 +13,7 @@ class DibsSpotViewController: UIViewController {
     
     @IBOutlet weak var handleView: UIView!
     @IBOutlet weak var buildingNameLabel: UILabel!
+    var spotName: String = "..."
     
     
     @IBOutlet weak var spotCountView: UIView!
@@ -20,6 +21,8 @@ class DibsSpotViewController: UIViewController {
     @IBOutlet weak var floorSelectionView: UIView!
     @IBOutlet weak var floorView: UIView!
     var floorScrollView: UIScrollView!
+    let imageView = UIImageView(image: UIImage(named: "Culc-floor1.png"))
+    
     
     @IBOutlet weak var collectionView: UICollectionView!
     var selectedFloorNum: Int = 0
@@ -28,11 +31,17 @@ class DibsSpotViewController: UIViewController {
     @IBOutlet weak var barChartView: BarChartView!
     
     fileprivate let timeOfDay = ["12am", "1am", "2am", "3am", "4am", "5am", "6am", "7am", "8am", "9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm", "6pm", "7pm", "8pm", "9pm", "10pm", "11pm"]
+    fileprivate let percentAtTime: [Double] = [5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 20.0, 40.0, 45.0, 50.0, 55.0,
+                                               65.0, 80.0, 70.0, 50.0, 55.0, 40.0, 30.0, 30.0, 20.0, 20.0, 20.0, 10.0]
     
     fileprivate let floorNumbers = ["1", "2", "3", "4", "5"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // building Name
+//        self.buildingNameLabel.text = spotName
+        self.buildingNameLabel.text = "Clough Undergraduate Learning Commons"
         
         setBarChart()
         
@@ -71,24 +80,36 @@ class DibsSpotViewController: UIViewController {
         self.floorPlanView.layer.shadowRadius = 5.0
         self.floorPlanView.layer.masksToBounds = false
         // floorSelection scrolling
-        
         self.floorScrollView = UIScrollView(frame: self.floorView.bounds)
+        self.floorScrollView.clipsToBounds = true
+        self.imageView.clipsToBounds = true
         self.floorScrollView.backgroundColor = UIColor.white
-        self.floorScrollView.contentSize = self.floorView.bounds.size
+        self.floorScrollView.contentSize = imageView.bounds.size
         self.floorScrollView.autoresizingMask = UIView.AutoresizingMask(rawValue: UIView.AutoresizingMask.flexibleWidth.rawValue | UIView.AutoresizingMask.flexibleHeight.rawValue)
+        self.floorScrollView.contentOffset = CGPoint(x: 200, y: 200)
+        self.floorScrollView.addSubview(imageView)
         self.floorView.addSubview(self.floorScrollView)
         
         self.floorScrollView.delegate = self
-        self.floorScrollView.minimumZoomScale = 0.7
-        self.floorScrollView.maximumZoomScale = 3.0
-        self.floorScrollView.zoomScale = 0.7
-        drawCulcBase()
+        setZoomScale()
+        // draw
+//        drawCulcBase()
         
         
-        // building Name
-        self.buildingNameLabel.text = "Klaus Advanced Computing Building"
-        
-        
+    }
+    
+    override func viewWillLayoutSubviews() {
+        setZoomScale()
+    }
+    
+    func setZoomScale() {
+        let imageViewSize = imageView.bounds.size
+        let scrollViewSize = floorScrollView.bounds.size
+        let widthScale = scrollViewSize.width / imageViewSize.width
+        let heightScale = scrollViewSize.height / imageViewSize.height
+            
+        self.floorScrollView.minimumZoomScale = min(widthScale, heightScale)
+        self.floorScrollView.zoomScale = 1.0
     }
     
     func setBarChart() {
@@ -116,7 +137,8 @@ class DibsSpotViewController: UIViewController {
         
         // build Test data
         for i in 0...23 {
-            let entry: BarChartDataEntry = BarChartDataEntry(x: Double(i), y: Double(Int.random(in: 1..<100)))
+            let yVal = self.percentAtTime[i]
+            let entry: BarChartDataEntry = BarChartDataEntry(x: Double(i), y: Double(yVal))
             entryArr.append(entry)
         }
         
@@ -252,7 +274,17 @@ class DibsSpotViewController: UIViewController {
 extension DibsSpotViewController: UIScrollViewDelegate {
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return floorView
+        return self.imageView
+    }
+    
+    func scrollViewDidZoom(_ scrollView: UIScrollView) {
+        let imageViewSize = imageView.frame.size
+        let scrollViewSize = floorScrollView.bounds.size
+            
+        let verticalPadding = imageViewSize.height < scrollViewSize.height ? (scrollViewSize.height - imageViewSize.height) / 2 : 0
+        let horizontalPadding = imageViewSize.width < scrollViewSize.width ? (scrollViewSize.width - imageViewSize.width) / 2 : 0
+            
+        floorScrollView.contentInset = UIEdgeInsets(top: verticalPadding, left: horizontalPadding, bottom: verticalPadding, right: horizontalPadding)
     }
     
 }
