@@ -25,6 +25,7 @@
 		9A61EB1223C4100F00D66F2E /* DibsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A61EB1123C4100F00D66F2E /* DibsTests.swift */; };
 		9A61EB1D23C4100F00D66F2E /* DibsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A61EB1C23C4100F00D66F2E /* DibsUITests.swift */; };
 		9A86813B24461DA1008B17DB /* UserAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A86813A24461DA1008B17DB /* UserAccountViewController.swift */; };
+		9A86813D244B8DFC008B17DB /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A86813C244B8DFC008B17DB /* logo.png */; };
 		9A9EDF5C2400624900C49471 /* LoginSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9EDF5B2400624900C49471 /* LoginSignupViewController.swift */; };
 		9A9EDF5E24086EC900C49471 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9EDF5D24086EC900C49471 /* HomeViewController.swift */; };
 		9ACEAED923F204CF00666CED /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ACEAED823F204CE00666CED /* IntroViewController.swift */; };
@@ -88,6 +89,7 @@
 		9A61EB1C23C4100F00D66F2E /* DibsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DibsUITests.swift; sourceTree = "<group>"; };
 		9A61EB1E23C4100F00D66F2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9A86813A24461DA1008B17DB /* UserAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountViewController.swift; sourceTree = "<group>"; };
+		9A86813C244B8DFC008B17DB /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = ../../../../../Downloads/logo.png; sourceTree = "<group>"; };
 		9A9EDF5B2400624900C49471 /* LoginSignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSignupViewController.swift; sourceTree = "<group>"; };
 		9A9EDF5D24086EC900C49471 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		9ACEAED723F0815B00666CED /* Dibs.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Dibs.entitlements; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				9A61EB0323C4100F00D66F2E /* Assets.xcassets */,
 				9A61EB0523C4100F00D66F2E /* LaunchScreen.storyboard */,
 				9A61EB0823C4100F00D66F2E /* Info.plist */,
+				9A86813C244B8DFC008B17DB /* logo.png */,
 				9A61EB0023C4100A00D66F2E /* Dibs.xcdatamodeld */,
 			);
 			path = Dibs;
@@ -378,6 +381,7 @@
 			files = (
 				9ADC9C26240EC4640063FAF6 /* SpotCell.xib in Resources */,
 				9A61EB0723C4100F00D66F2E /* LaunchScreen.storyboard in Resources */,
+				9A86813D244B8DFC008B17DB /* logo.png in Resources */,
 				9A3D5A1C23DA150E007E88E9 /* GoogleService-Info.plist in Resources */,
 				9A61EB0423C4100F00D66F2E /* Assets.xcassets in Resources */,
 				9A61EAFF23C4100A00D66F2E /* Main.storyboard in Resources */,

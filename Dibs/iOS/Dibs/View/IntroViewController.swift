@@ -57,7 +57,7 @@ class IntroViewController: UIViewController, UITextFieldDelegate {
 //        view.insertSubview(pastelView, at: 0)
 
         // Do any additional setup after loading the view.
-//        signOutTestButton.isHidden = true
+        signOutTestButton.isHidden = true
     }
     
     

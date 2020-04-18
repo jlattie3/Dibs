@@ -21,7 +21,7 @@ class DibsSpotViewController: UIViewController {
     @IBOutlet weak var floorSelectionView: UIView!
     @IBOutlet weak var floorView: UIView!
     var floorScrollView: UIScrollView!
-    let imageView = UIImageView(image: UIImage(named: "Culc-floor1.png"))
+    let imageView = UIImageView(image: UIImage(named: "dibs-culc-floor1.jpg"))
     
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -109,7 +109,7 @@ class DibsSpotViewController: UIViewController {
         let heightScale = scrollViewSize.height / imageViewSize.height
             
         self.floorScrollView.minimumZoomScale = min(widthScale, heightScale)
-        self.floorScrollView.zoomScale = 1.0
+        self.floorScrollView.zoomScale = min(widthScale, heightScale)
     }
     
     func setBarChart() {
@@ -297,6 +297,9 @@ extension DibsSpotViewController: UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "floorCell", for: indexPath) as! FloorCell
         cell.floorNumLabel.text = floorNumbers[indexPath.row]
+        if (indexPath.row == 0) {
+            cell.floorNumLabel.textColor = #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)
+        }
         return cell
     }
     

@@ -28,15 +28,15 @@
                                 </connections>
                             </button>
                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dibs" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lce-pt-4gs">
-                                <rect key="frame" x="157" y="162" width="100" height="57.5"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
+                                <rect key="frame" x="155.5" y="162" width="103.5" height="57.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="48"/>
                                 <color key="textColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ELH-ti-lcY">
-                                <rect key="frame" x="125" y="125" width="164.5" height="36"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
-                                <nil key="textColor"/>
+                                <rect key="frame" x="122.5" y="125" width="169" height="36"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="30"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Nzj-fe-UyD">
@@ -58,7 +58,7 @@
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Find Your Desired Seat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KHk-YI-AsD">
                                                         <rect key="frame" x="8" y="8" width="226" height="20"/>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -531,7 +531,7 @@ or Sign Up</string>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kJN-Pf-slb">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2/100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kJN-Pf-slb">
                                         <rect key="frame" x="9.5" y="53.5" width="374" height="72"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="60"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1059,17 +1059,20 @@ or Sign Up</string>
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="link" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XyJ-JI-NSM">
-                                        <rect key="frame" x="158" y="82.5" width="205" height="24"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
-                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jd5-N3-C0L">
+                                        <rect key="frame" x="171" y="82" width="25" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="jd5-N3-C0L" secondAttribute="height" multiplier="1:1" id="qOU-Zp-6hY"/>
+                                            <constraint firstAttribute="width" constant="25" id="yYA-KC-imc"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="tintColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" image="safari" catalog="system"/>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstItem="VxL-lF-zxE" firstAttribute="centerY" secondItem="qkt-pr-m32" secondAttribute="centerY" id="09b-n2-iel"/>
-                                    <constraint firstItem="XyJ-JI-NSM" firstAttribute="centerY" secondItem="fHp-GR-73y" secondAttribute="centerY" id="13C-Kb-Eic"/>
                                     <constraint firstItem="UWg-Ro-ayj" firstAttribute="leading" secondItem="JQu-a3-TyA" secondAttribute="leading" constant="10" id="6bu-G1-vlk"/>
                                     <constraint firstItem="fHp-GR-73y" firstAttribute="width" secondItem="JQu-a3-TyA" secondAttribute="width" multiplier="0.25" id="8eM-pv-hFF"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="UWg-Ro-ayj" secondAttribute="trailing" constant="20" symbolic="YES" id="Dhl-nR-TJj"/>
@@ -1080,10 +1083,10 @@ or Sign Up</string>
                                     <constraint firstAttribute="trailing" secondItem="VxL-lF-zxE" secondAttribute="trailing" constant="10" id="gTx-39-uEw"/>
                                     <constraint firstItem="VxL-lF-zxE" firstAttribute="width" secondItem="JQu-a3-TyA" secondAttribute="width" multiplier="0.55" id="hE7-fP-rF3"/>
                                     <constraint firstItem="fHp-GR-73y" firstAttribute="top" secondItem="qkt-pr-m32" secondAttribute="bottom" constant="10" id="pfl-4q-qFt"/>
-                                    <constraint firstItem="XyJ-JI-NSM" firstAttribute="width" secondItem="JQu-a3-TyA" secondAttribute="width" multiplier="0.55" id="qUP-0e-7Qb"/>
-                                    <constraint firstAttribute="trailing" secondItem="XyJ-JI-NSM" secondAttribute="trailing" constant="10" id="tVp-cI-Nuw"/>
+                                    <constraint firstItem="jd5-N3-C0L" firstAttribute="leading" secondItem="fHp-GR-73y" secondAttribute="trailing" constant="67.5" id="scj-b2-fI6"/>
                                     <constraint firstItem="fHp-GR-73y" firstAttribute="leading" secondItem="JQu-a3-TyA" secondAttribute="leading" constant="10" id="umI-Up-pTc"/>
                                     <constraint firstItem="qkt-pr-m32" firstAttribute="leading" secondItem="JQu-a3-TyA" secondAttribute="leading" constant="10" id="vCI-cf-jm0"/>
+                                    <constraint firstItem="jd5-N3-C0L" firstAttribute="centerY" secondItem="fHp-GR-73y" secondAttribute="centerY" id="yfv-rK-44r"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -1268,11 +1271,12 @@ or Sign Up</string>
         <image name="map" catalog="system" width="64" height="56"/>
         <image name="person.circle" catalog="system" width="64" height="60"/>
         <image name="plus" catalog="system" width="64" height="56"/>
+        <image name="safari" catalog="system" width="64" height="60"/>
         <image name="star" catalog="system" width="64" height="58"/>
         <image name="trash" catalog="system" width="60" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="2fh-LD-SRg"/>
-        <segue reference="n0r-0E-sPI"/>
+        <segue reference="bVd-sH-pav"/>
     </inferredMetricsTieBreakers>
 </document>

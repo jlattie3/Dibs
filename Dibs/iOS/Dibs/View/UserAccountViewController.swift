@@ -20,7 +20,7 @@ class UserAccountViewController: UIViewController {
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var tableView: UITableView!
     
-    let pickerItems = ["Standford", "Georgia Tech", "Auburn"]
+    let pickerItems = ["Georgia Tech", "Standford", "Auburn"]
     
     let tableViewData = ["CULC", "Van Leer"]
     let detailData = ["2/100", "1/40"]
@@ -70,17 +70,21 @@ class UserAccountViewController: UIViewController {
     }
     
     func loadFirebaseUserData() {
+        accountEmailLabel.text = "georgep@burdell.com"
+        var dateStringDemo = "04-Apr-2020"
+        dateLabel.text = dateStringDemo
         let user = Auth.auth().currentUser
+        print(user)
         if let user = user {
             if let email = user.email {
                 accountEmailLabel.text = email
             }
             if let date = user.metadata.creationDate {
-                
                 let formatter = DateFormatter()
                 formatter.dateFormat = "dd-MMM-yyyy"
                 let dateString = formatter.string(from: date)
-                dateLabel.text = dateString
+                var dateStringDemo = "04-Apr-2020"
+                dateLabel.text = dateStringDemo
             }
         }
     }
