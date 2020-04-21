@@ -14,6 +14,24 @@ Dibs is a Spring 2020 ECE Senior Design project.
 
 ## Gallery
 
-## Authors
-
 ![DibsScreensImage](DibsAppScreens.png)
+
+## Hardware and Software
+
+### Hardware
+
+```
+Raspberry Pi 3
+.
+.
+.
+```
+
+### Software
+
+```
+Xcode 11.3.1
+iOS 13+
+Firebase Console
+Adobe XD, Photoshop
+```
