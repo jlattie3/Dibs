@@ -22,9 +22,9 @@ Dibs is a Spring 2020 ECE Senior Design project.
 
 ```
 Raspberry Pi 3
-.
-.
-.
+nRF52840 Breakout
+TLV2462 Op Amp
+GL5528 LDR
 ```
 
 ### Software
