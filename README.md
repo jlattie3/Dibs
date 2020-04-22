@@ -15,6 +15,7 @@ Dibs is a Spring 2020 ECE Senior Design project.
 ## Gallery
 
 ![DibsScreensImage](DibsAppScreens.png)
+[Demonstration Video](https://www.youtube.com/watch?v=aS5m3ymsTrY&t=1s)
 
 ## Hardware and Software
 
