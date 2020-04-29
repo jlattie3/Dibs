@@ -30,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            print(userDict)
         } else {
             print("No defaults set yet!")
+            
             let defaultDict = ["CULC" : 0,
                                "Van Leer" : 1,
                                "Klaus" : 2,
